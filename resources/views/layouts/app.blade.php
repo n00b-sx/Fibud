@@ -82,6 +82,11 @@
                         Transfer & Top Up
                     </a>
 
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('reports.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('reports.index') }}">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-4"/><path d="M8 18v-2"/><path d="M16 18v-6"/></svg>
+                        Laporan Keuangan
+                    </a>
+
                     <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('budgets.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('budgets.index') }}">
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M18 12h.01"/><path d="M14 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/></svg>
                         Batas Anggaran

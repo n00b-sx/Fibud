@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,10 @@ Route::get('/transactions', [TransactionController::class, 'index'])->name('tran
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 Route::put('/transactions/{transaction}', [TransactionController::class, 'update'])->name('transactions.update');
 Route::delete('/transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+
+// Laporan Keuangan & Export PDF
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/export-pdf', [ReportController::class, 'exportPdf'])->name('reports.export-pdf');
 
 // Mutasi / Transfer Antar Rekening & Top Up E-Wallet
 Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
