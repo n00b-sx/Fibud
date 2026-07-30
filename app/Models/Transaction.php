@@ -17,6 +17,7 @@ class Transaction extends Model
         'amount',
         'date',
         'description',
+        'source_destination',
     ];
 
     protected $casts = [

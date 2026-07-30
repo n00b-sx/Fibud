@@ -203,9 +203,16 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label for="modal-description" class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                            <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label id="modal-source-dest-label" for="modal-source-destination" class="block text-sm font-medium text-gray-900 mb-1">Sumber / Tujuan Dana</label>
+                                <input type="text" id="modal-source-destination" name="source_destination" placeholder="Contoh: PT ABC (Sumber) / Indomaret (Tujuan)" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            </div>
+
+                            <div>
+                                <label for="modal-description" class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
+                                <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            </div>
                         </div>
 
                         <!-- SECTION: RINCIAN ITEM STRUK BELANJA -->
@@ -278,6 +285,26 @@
                     input.value = formatRupiahString(input.value);
                 }
             });
+
+            // Dynamic Source / Destination Label for Global Modal
+            const modalCatSelect = document.getElementById('modal-category');
+            const modalSourceLabel = document.getElementById('modal-source-dest-label');
+            const modalSourceInput = document.getElementById('modal-source-destination');
+
+            if (modalCatSelect && modalSourceLabel) {
+                modalCatSelect.addEventListener('change', function () {
+                    const selectedOpt = modalCatSelect.options[modalCatSelect.selectedIndex];
+                    const labelText = selectedOpt.text;
+
+                    if (labelText.includes('[Pemasukan]')) {
+                        modalSourceLabel.textContent = 'Sumber Dana (Diterima Dari)';
+                        if (modalSourceInput) modalSourceInput.placeholder = 'Contoh: PT ABC, Klien Budi, Hadiah';
+                    } else if (labelText.includes('[Pengeluaran]')) {
+                        modalSourceLabel.textContent = 'Tujuan Dana (Dibayarkan Ke)';
+                        if (modalSourceInput) modalSourceInput.placeholder = 'Contoh: Indomaret, PLN, Tokopedia';
+                    }
+                });
+            }
 
             // Handle Add Transaction Modal Items & Calculation
             const container = document.getElementById('receipt-items-container');

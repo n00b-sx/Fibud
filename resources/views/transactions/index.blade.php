@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Riwayat Transaksi - Fibud')
+@section('title', 'Catatan Transaksi - Fibud')
 
 @section('content')
 <div class="space-y-6">
@@ -9,7 +9,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Catatan Transaksi</h1>
-            <p class="text-xs sm:text-sm text-gray-500">Daftar riwayat semua pemasukan, pengeluaran, dan rincian struk belanja</p>
+            <p class="text-xs sm:text-sm text-gray-500">Kelola riwayat pemasukan, pengeluaran, sumber/tujuan dana, dan rincian struk</p>
         </div>
         <div>
             <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-transaction-modal">
@@ -19,48 +19,126 @@
         </div>
     </div>
 
-    <!-- FILTER BAR CARD (30% WHITE STRUCTURE + SHADOW-SM) -->
+    <!-- CARDS AKUMULASI HASIL FILTER (60-30-10 DESIGN SYSTEM + SHADOW-SM) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Akumulasi Pemasukan Filtered -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pemasukan (Hasil Filter)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-50 text-emerald-600">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/></svg>
+                </span>
+            </div>
+            <div class="mt-2 text-2xl font-extrabold text-emerald-600">
+                +Rp {{ number_format($filteredIncome, 0, ',', '.') }}
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Total akumulasi dari {{ $transactions->total() }} kriteria transaksi</p>
+        </div>
+
+        <!-- Akumulasi Pengeluaran Filtered -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pengeluaran (Hasil Filter)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-rose-50 text-rose-600">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/></svg>
+                </span>
+            </div>
+            <div class="mt-2 text-2xl font-extrabold text-gray-900">
+                -Rp {{ number_format($filteredExpense, 0, ',', '.') }}
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Total pengeluaran tercatat</p>
+        </div>
+
+        <!-- Akumulasi Net Flow Filtered -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Selisih Net (Hasil Filter)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $filteredNet >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600' }}">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
+                </span>
+            </div>
+            <div class="mt-2 text-2xl font-extrabold {{ $filteredNet >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
+                {{ $filteredNet >= 0 ? '+' : '-' }}Rp {{ number_format(abs($filteredNet), 0, ',', '.') }}
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Surplus / Defisit hasil filter</p>
+        </div>
+    </div>
+
+    <!-- FILTER BAR COMPREHENSIVE CARD (FILTER WAKTU HARI/BULAN/TAHUN & RENTANG TANGGAL) -->
     <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-        <form action="{{ route('transactions.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-5 gap-3">
-            <div>
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan / barang..." class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs sm:text-sm focus:border-orange-500 focus:ring-orange-500">
+        <form action="{{ route('transactions.index') }}" method="GET" class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <!-- Search Text -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Cari Kata Kunci</label>
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan, sumber, barang..." class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                </div>
+
+                <!-- Filter Periode Waktu -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Periode Waktu Cepat</label>
+                    <select name="period" id="filter-period" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <option value="">-- Semua Waktu --</option>
+                        <option value="today" {{ request('period') === 'today' ? 'selected' : '' }}>Hari Ini</option>
+                        <option value="this_week" {{ request('period') === 'this_week' ? 'selected' : '' }}>Minggu Ini</option>
+                        <option value="this_month" {{ request('period') === 'this_month' ? 'selected' : '' }}>Bulan Ini</option>
+                        <option value="this_year" {{ request('period') === 'this_year' ? 'selected' : '' }}>Tahun Ini</option>
+                        <option value="custom" {{ request('period') === 'custom' || request('start_date') ? 'selected' : '' }}>Rentang Tanggal Custom</option>
+                    </select>
+                </div>
+
+                <!-- Filter Tanggal Mulai -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Dari Tanggal</label>
+                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                </div>
+
+                <!-- Filter Tanggal Selesai -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Sampai Tanggal</label>
+                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                </div>
+
+                <!-- Filter Rekening -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Sumber Rekening</label>
+                    <select name="account_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <option value="">-- Semua Rekening --</option>
+                        @foreach($accounts as $acc)
+                            <option value="{{ $acc->id }}" {{ request('account_id') == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
-            <div>
-                <select name="account_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs sm:text-sm focus:border-orange-500 focus:ring-orange-500">
-                    <option value="">-- Semua Rekening --</option>
-                    @foreach($accounts as $acc)
-                        <option value="{{ $acc->id }}" {{ request('account_id') == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-gray-100">
+                <div>
+                    <select name="type" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <option value="">-- Semua Tipe (Pemasukan / Pengeluaran) --</option>
+                        <option value="income" {{ request('type') === 'income' ? 'selected' : '' }}>Pemasukan</option>
+                        <option value="expense" {{ request('type') === 'expense' ? 'selected' : '' }}>Pengeluaran</option>
+                    </select>
+                </div>
 
-            <div>
-                <select name="type" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs sm:text-sm focus:border-orange-500 focus:ring-orange-500">
-                    <option value="">-- Semua Tipe --</option>
-                    <option value="income" {{ request('type') === 'income' ? 'selected' : '' }}>Pemasukan</option>
-                    <option value="expense" {{ request('type') === 'expense' ? 'selected' : '' }}>Pengeluaran</option>
-                </select>
-            </div>
+                <div>
+                    <select name="category_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <option value="">-- Semua Kategori --</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <div>
-                <select name="category_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs sm:text-sm focus:border-orange-500 focus:ring-orange-500">
-                    <option value="">-- Semua Kategori --</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="flex gap-2">
-                <button type="submit" class="w-full py-2 px-3 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-gray-800 transition">
-                    Filter
-                </button>
-                @if(request()->hasAny(['search', 'type', 'category_id', 'account_id']))
-                <a href="{{ route('transactions.index') }}" class="py-2 px-3 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-200 flex items-center justify-center">
-                    Reset
-                </a>
-                @endif
+                <div class="flex gap-2">
+                    <button type="submit" class="w-full py-2 px-3 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-gray-800 transition">
+                        Terapkan Filter
+                    </button>
+                    @if(request()->hasAny(['search', 'type', 'category_id', 'account_id', 'period', 'start_date', 'end_date']))
+                    <a href="{{ route('transactions.index') }}" class="py-2 px-3 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-200 flex items-center justify-center">
+                        Reset
+                    </a>
+                    @endif
+                </div>
             </div>
         </form>
     </div>
@@ -74,6 +152,7 @@
                         <th class="py-3 px-4 text-start">Tanggal</th>
                         <th class="py-3 px-4 text-start">Rekening</th>
                         <th class="py-3 px-4 text-start">Kategori</th>
+                        <th class="py-3 px-4 text-start">Sumber / Tujuan Dana</th>
                         <th class="py-3 px-4 text-start">Keterangan / Struk</th>
                         <th class="py-3 px-4 text-end">Nominal</th>
                         <th class="py-3 px-4 text-center">Aksi</th>
@@ -92,6 +171,21 @@
                             <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium {{ $tx->category->type === 'income' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-gray-100 text-gray-700 border border-gray-200' }}">
                                 {{ $tx->category->name }}
                             </span>
+                        </td>
+                        <!-- COLUMN: SUMBER / TUJUAN DANA -->
+                        <td class="py-3 px-4 text-xs">
+                            @if($tx->source_destination)
+                                <div class="font-semibold text-gray-800 flex items-center gap-x-1">
+                                    @if($tx->category->type === 'income')
+                                        <span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Dari:</span>
+                                    @else
+                                        <span class="text-[11px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">Ke:</span>
+                                    @endif
+                                    <span>{{ $tx->source_destination }}</span>
+                                </div>
+                            @else
+                                <span class="text-gray-400 text-xs">-</span>
+                            @endif
                         </td>
                         <td class="py-3 px-4 text-gray-800 text-xs sm:text-sm">
                             <div class="font-medium">{{ $tx->description ?? '-' }}</div>
@@ -124,8 +218,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="py-8 text-center text-gray-500 text-sm">
-                            Tidak ada data transaksi.
+                        <td colspan="7" class="py-8 text-center text-gray-500 text-sm">
+                            Tidak ada data transaksi yang sesuai filter.
                         </td>
                     </tr>
                     @endforelse
@@ -135,7 +229,7 @@
 
         @if($transactions->hasPages())
         <div class="p-4 border-t border-gray-200">
-            {{ $transactions->links() }}
+            {{ $transactions->appends(request()->query())->links() }}
         </div>
         @endif
     </div>
@@ -227,15 +321,15 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Kategori Transaksi</label>
-                            <select name="category_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <select name="category_id" required class="edit-category-select py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
                                 <optgroup label="--- PEMASUKAN ---">
                                     @foreach($categories->where('type', 'income') as $cat)
-                                        <option value="{{ $cat->id }}" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pemasukan] {{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" data-type="income" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pemasukan] {{ $cat->name }}</option>
                                     @endforeach
                                 </optgroup>
                                 <optgroup label="--- PENGELUARAN ---">
                                     @foreach($categories->where('type', 'expense') as $cat)
-                                        <option value="{{ $cat->id }}" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pengeluaran] {{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" data-type="expense" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pengeluaran] {{ $cat->name }}</option>
                                     @endforeach
                                 </optgroup>
                             </select>
@@ -257,9 +351,18 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                        <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="edit-source-dest-label block text-sm font-medium text-gray-900 mb-1">
+                                {{ $tx->category->type === 'income' ? 'Sumber Dana (Diterima Dari)' : 'Tujuan Dana (Dibayarkan Ke)' }}
+                            </label>
+                            <input type="text" name="source_destination" value="{{ $tx->source_destination }}" placeholder="Contoh: PT ABC / Indomaret" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
+                            <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                        </div>
                     </div>
 
                     <!-- SECTION: EDIT RINCIAN ITEM STRUK BELANJA -->
@@ -324,7 +427,21 @@
             const container = form.querySelector('.edit-items-container');
             const btnAdd = form.querySelector('.btn-edit-add-item');
             const inputTotalAmount = form.querySelector('.edit-amount-input');
+            const catSelect = form.querySelector('.edit-category-select');
+            const labelSourceDest = form.querySelector('.edit-source-dest-label');
             let itemIndex = container.querySelectorAll('.receipt-item-row').length;
+
+            if (catSelect && labelSourceDest) {
+                catSelect.addEventListener('change', function () {
+                    const selectedOpt = catSelect.options[catSelect.selectedIndex];
+                    const type = selectedOpt.getAttribute('data-type');
+                    if (type === 'income') {
+                        labelSourceDest.textContent = 'Sumber Dana (Diterima Dari)';
+                    } else {
+                        labelSourceDest.textContent = 'Tujuan Dana (Dibayarkan Ke)';
+                    }
+                });
+            }
 
             function calculateTotals() {
                 let grandTotal = 0;
