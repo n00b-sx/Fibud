@@ -25,6 +25,16 @@ class Account extends Model
         return $this->hasMany(Transaction::class);
     }
 
+    public function transfersFrom(): HasMany
+    {
+        return $this->hasMany(AccountTransfer::class, 'from_account_id');
+    }
+
+    public function transfersTo(): HasMany
+    {
+        return $this->hasMany(AccountTransfer::class, 'to_account_id');
+    }
+
     public function getBalanceAttribute(): float
     {
         $income = $this->transactions()->whereHas('category', fn ($q) => $q->where('type', 'income'))->sum('amount');

@@ -11,7 +11,11 @@
             <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Rekening & Dompet</h1>
             <p class="text-xs sm:text-sm text-gray-500">Atur rekening bank, e-wallet, dan sumber dana tunai Anda</p>
         </div>
-        <div>
+        <div class="flex items-center gap-x-2">
+            <a href="{{ route('transfers.index') }}" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100 shadow-sm transition">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                Transfer / Top Up
+            </a>
             <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-account-modal">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 + Tambah Rekening

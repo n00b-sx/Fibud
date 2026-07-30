@@ -5,6 +5,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
@@ -15,6 +16,11 @@ Route::get('/transactions', [TransactionController::class, 'index'])->name('tran
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 Route::put('/transactions/{transaction}', [TransactionController::class, 'update'])->name('transactions.update');
 Route::delete('/transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+
+// Mutasi / Transfer Antar Rekening & Top Up E-Wallet
+Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
+Route::post('/transfers', [TransferController::class, 'store'])->name('transfers.store');
+Route::delete('/transfers/{transfer}', [TransferController::class, 'destroy'])->name('transfers.destroy');
 
 // Budgeting
 Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets.index');
