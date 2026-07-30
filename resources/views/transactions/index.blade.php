@@ -241,11 +241,11 @@
 <!-- 1. MODAL DETAIL STRUK -->
 @if($tx->items->count() > 0)
 <div id="hs-receipt-modal-{{ $tx->id }}" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-y-auto overflow-x-hidden pointer-events-none" tabindex="-1" role="dialog">
-    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-2xl sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
         <div class="w-full flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm pointer-events-auto">
             <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
                 <div>
-                    <h3 class="font-bold text-gray-900">Rincian Struk Belanja</h3>
+                    <h3 class="font-bold text-gray-900 text-base">Rincian Struk Belanja</h3>
                     <p class="text-xs text-gray-500">{{ $tx->description ?? 'Transaksi Belanja' }} • {{ $tx->date->format('d M Y') }}</p>
                 </div>
                 <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">
@@ -253,25 +253,25 @@
                 </button>
             </div>
 
-            <div class="p-4 overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 text-xs">
+            <div class="p-4 sm:p-5 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
                     <thead>
-                        <tr class="text-gray-500 font-semibold uppercase">
-                            <th class="py-2 text-start">Barang</th>
-                            <th class="py-2 text-center">Qty</th>
-                            <th class="py-2 text-end">Harga Satuan</th>
-                            <th class="py-2 text-end">Diskon</th>
-                            <th class="py-2 text-end">Subtotal</th>
+                        <tr class="text-gray-500 font-semibold uppercase text-xs">
+                            <th class="py-2.5 px-3 text-start">Barang</th>
+                            <th class="py-2.5 px-3 text-center whitespace-nowrap">Qty</th>
+                            <th class="py-2.5 px-3 text-end whitespace-nowrap">Harga Satuan</th>
+                            <th class="py-2.5 px-3 text-end whitespace-nowrap">Diskon</th>
+                            <th class="py-2.5 px-3 text-end whitespace-nowrap">Subtotal</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
                         @foreach($tx->items as $item)
                         <tr>
-                            <td class="py-2 text-gray-900 font-medium">{{ $item->name }}</td>
-                            <td class="py-2 text-center text-gray-600 font-medium">{{ $item->quantity }}</td>
-                            <td class="py-2 text-end text-gray-600">Rp {{ number_format($item->unit_price, 0, ',', '.') }}</td>
-                            <td class="py-2 text-end text-rose-600 font-medium">{{ $item->discount > 0 ? '-Rp ' . number_format($item->discount, 0, ',', '.') : '-' }}</td>
-                            <td class="py-2 text-end font-bold text-gray-900">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
+                            <td class="py-2.5 px-3 text-gray-900 font-medium">{{ $item->name }}</td>
+                            <td class="py-2.5 px-3 text-center text-gray-600 font-medium whitespace-nowrap">{{ $item->quantity }}</td>
+                            <td class="py-2.5 px-3 text-end text-gray-600 whitespace-nowrap">Rp {{ number_format($item->unit_price, 0, ',', '.') }}</td>
+                            <td class="py-2.5 px-3 text-end text-rose-600 font-medium whitespace-nowrap">{{ $item->discount > 0 ? '-Rp ' . number_format($item->discount, 0, ',', '.') : '-' }}</td>
+                            <td class="py-2.5 px-3 text-end font-bold text-gray-900 whitespace-nowrap">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
                         </tr>
                         @endforeach
                     </tbody>
