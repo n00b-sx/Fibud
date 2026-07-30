@@ -121,7 +121,7 @@ class TransactionController extends Controller
                     $qty = (int) ($item['quantity'] ?? 1);
                     $price = (float) ($item['unit_price'] ?? 0);
                     $discount = (float) ($item['discount'] ?? 0);
-                    $subtotal = max(0, ($qty * $price) - discount);
+                    $subtotal = max(0, ($qty * $price) - $discount);
 
                     $computedTotal += $subtotal;
                     $itemsData[] = [
@@ -186,7 +186,7 @@ class TransactionController extends Controller
                     $qty = (int) ($item['quantity'] ?? 1);
                     $price = (float) ($item['unit_price'] ?? 0);
                     $discount = (float) ($item['discount'] ?? 0);
-                    $subtotal = max(0, ($qty * $price) - discount);
+                    $subtotal = max(0, ($qty * $price) - $discount);
 
                     $computedTotal += $subtotal;
                     $itemsData[] = [
