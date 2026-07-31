@@ -77,17 +77,17 @@
                         <div class="p-4 space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
-                                <input type="text" name="name" value="{{ $acc->name }}" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="name" value="{{ $acc->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Nomor Rekening / Akun (Opsional)</label>
-                                <input type="text" name="account_number" value="{{ $acc->account_number }}" placeholder="Misal: 1234567890" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="account_number" value="{{ $acc->account_number }}" placeholder="Misal: 1234567890" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Saldo Awal (Rp)</label>
-                                <input type="text" name="initial_balance" value="{{ number_format($acc->initial_balance, 0, '', '') }}" data-currency-input required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="initial_balance" value="{{ number_format($acc->initial_balance, 0, '', '') }}" data-currency-input required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
                         </div>
 
@@ -118,17 +118,17 @@
                     <div class="p-4 space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
-                            <input type="text" name="name" required placeholder="Misal: Bank Mandiri / OVO" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="name" required placeholder="Misal: Bank Mandiri / OVO" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Nomor Rekening / Akun (Opsional)</label>
-                            <input type="text" name="account_number" placeholder="Misal: 9876543210" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="account_number" placeholder="Misal: 9876543210" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Saldo Awal (Rp)</label>
-                            <input type="text" name="initial_balance" value="0" data-currency-input required placeholder="0" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="initial_balance" value="0" data-currency-input required placeholder="0" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
                     </div>
 

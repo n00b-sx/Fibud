@@ -11,3 +11,31 @@
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Global Form Inputs Light-Gray Background (#f9fafb) & Contrast Border (#d1d5db) */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="month"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+    color: #111827;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    background-color: #ffffff;
+    border-color: #f97316;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}

@@ -71,13 +71,13 @@
                 <!-- Search Text -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Cari Kata Kunci</label>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan, sumber, barang..." class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan, sumber, barang..." class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
 
                 <!-- Filter Periode Waktu -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Periode Waktu Cepat</label>
-                    <select name="period" id="filter-period" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="period" id="filter-period" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Waktu --</option>
                         <option value="today" {{ request('period') === 'today' ? 'selected' : '' }}>Hari Ini</option>
                         <option value="this_week" {{ request('period') === 'this_week' ? 'selected' : '' }}>Minggu Ini</option>
@@ -90,19 +90,19 @@
                 <!-- Filter Tanggal Mulai -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Dari Tanggal</label>
-                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
 
                 <!-- Filter Tanggal Selesai -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Sampai Tanggal</label>
-                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
 
                 <!-- Filter Rekening -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Sumber Rekening</label>
-                    <select name="account_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="account_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Rekening --</option>
                         @foreach($accounts as $acc)
                             <option value="{{ $acc->id }}" {{ request('account_id') == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
@@ -113,7 +113,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-gray-100">
                 <div>
-                    <select name="type" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="type" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Tipe (Pemasukan / Pengeluaran) --</option>
                         <option value="income" {{ request('type') === 'income' ? 'selected' : '' }}>Pemasukan</option>
                         <option value="expense" {{ request('type') === 'expense' ? 'selected' : '' }}>Pengeluaran</option>
@@ -121,7 +121,7 @@
                 </div>
 
                 <div>
-                    <select name="category_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Kategori --</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
@@ -312,7 +312,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Rekening / Sumber Dana</label>
-                            <select name="account_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <select name="account_id" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 @foreach($accounts as $acc)
                                     <option value="{{ $acc->id }}" {{ $tx->account_id == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
                                 @endforeach
@@ -321,7 +321,7 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Kategori Transaksi</label>
-                            <select name="category_id" required class="edit-category-select py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <select name="category_id" required class="edit-category-select py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 <optgroup label="--- PEMASUKAN ---">
                                     @foreach($categories->where('type', 'income') as $cat)
                                         <option value="{{ $cat->id }}" data-type="income" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pemasukan] {{ $cat->name }}</option>
@@ -339,14 +339,14 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Tanggal</label>
-                            <input type="date" name="date" value="{{ $tx->date->format('Y-m-d') }}" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="date" name="date" value="{{ $tx->date->format('Y-m-d') }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Total Nominal Transaksi (Rp)</label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
-                                <input type="text" name="amount" value="{{ number_format($tx->amount, 0, '', '') }}" data-currency-input placeholder="0" class="edit-amount-input py-2 ps-9 pe-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="amount" value="{{ number_format($tx->amount, 0, '', '') }}" data-currency-input placeholder="0" class="edit-amount-input py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
                         </div>
                     </div>
@@ -356,12 +356,12 @@
                             <label class="edit-source-dest-label block text-sm font-medium text-gray-900 mb-1">
                                 {{ $tx->category->type === 'income' ? 'Sumber Dana (Diterima Dari)' : 'Tujuan Dana (Dibayarkan Ke)' }}
                             </label>
-                            <input type="text" name="source_destination" value="{{ $tx->source_destination }}" placeholder="Contoh: PT ABC / Indomaret" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="source_destination" value="{{ $tx->source_destination }}" placeholder="Contoh: PT ABC / Indomaret" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                            <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
                     </div>
 

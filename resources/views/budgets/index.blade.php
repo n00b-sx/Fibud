@@ -94,7 +94,7 @@
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Batas Anggaran (Rp)</label>
                                 <div class="relative">
                                     <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
-                                    <input type="text" name="amount_limit" value="{{ number_format($item['amount_limit'], 0, '', '') }}" data-currency-input required placeholder="Contoh: 1.500.000" class="py-2 ps-9 pe-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                    <input type="text" name="amount_limit" value="{{ number_format($item['amount_limit'], 0, '', '') }}" data-currency-input required placeholder="Contoh: 1.500.000" class="py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 </div>
                             </div>
                         </div>

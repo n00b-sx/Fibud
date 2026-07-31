@@ -27,7 +27,7 @@
                 <!-- Periode Cepat -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Periode Cepat</label>
-                    <select name="period" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="period" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="this_month" {{ request('period', 'this_month') === 'this_month' ? 'selected' : '' }}>Bulan Ini ({{ date('M Y') }})</option>
                         <option value="today" {{ request('period') === 'today' ? 'selected' : '' }}>Hari Ini</option>
                         <option value="this_week" {{ request('period') === 'this_week' ? 'selected' : '' }}>Minggu Ini</option>
@@ -40,25 +40,25 @@
                 <!-- Filter Bulan & Tahun (Month Picker) -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Bulan & Tahun Spesifik</label>
-                    <input type="month" name="month_year" value="{{ request('month_year') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="month" name="month_year" value="{{ request('month_year') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
 
                 <!-- Dari Tanggal -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Dari Tanggal (Custom)</label>
-                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
 
                 <!-- Sampai Tanggal -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Sampai Tanggal (Custom)</label>
-                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-gray-100">
                 <div>
-                    <select name="account_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="account_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Rekening --</option>
                         @foreach($accounts as $acc)
                             <option value="{{ $acc->id }}" {{ request('account_id') == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div>
-                    <select name="category_id" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-xs focus:border-orange-500 focus:ring-orange-500">
+                    <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Kategori --</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>

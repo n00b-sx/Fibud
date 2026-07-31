@@ -135,7 +135,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="from_account_id" class="block text-sm font-medium text-gray-900 mb-1">Dari Rekening (Sumber)</label>
-                            <select id="from_account_id" name="from_account_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <select id="from_account_id" name="from_account_id" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 <option value="" disabled selected>-- Pilih Sumber --</option>
                                 @foreach($accounts as $acc)
                                     <option value="{{ $acc->id }}">{{ $acc->name }} (Rp {{ number_format($acc->balance, 0, ',', '.') }})</option>
@@ -145,7 +145,7 @@
 
                         <div>
                             <label for="to_account_id" class="block text-sm font-medium text-gray-900 mb-1">Ke Rekening / E-Wallet (Tujuan)</label>
-                            <select id="to_account_id" name="to_account_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <select id="to_account_id" name="to_account_id" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 <option value="" disabled selected>-- Pilih Tujuan --</option>
                                 @foreach($accounts as $acc)
                                     <option value="{{ $acc->id }}">{{ $acc->name }} (Rp {{ number_format($acc->balance, 0, ',', '.') }})</option>
@@ -159,7 +159,7 @@
                             <label for="transfer_amount" class="block text-sm font-medium text-gray-900 mb-1">Nominal Transfer (Rp)</label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
-                                <input type="text" id="transfer_amount" name="amount" data-currency-input required placeholder="0" class="py-2 ps-9 pe-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" id="transfer_amount" name="amount" data-currency-input required placeholder="0" class="py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
                         </div>
 
@@ -167,7 +167,7 @@
                             <label for="admin_fee" class="block text-sm font-medium text-gray-900 mb-1">Biaya Admin (Rp, Jika Ada)</label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
-                                <input type="text" id="admin_fee" name="admin_fee" data-currency-input placeholder="0" class="py-2 ps-9 pe-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" id="admin_fee" name="admin_fee" data-currency-input placeholder="0" class="py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
                         </div>
                     </div>
@@ -175,12 +175,12 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="transfer_date" class="block text-sm font-medium text-gray-900 mb-1">Tanggal Mutasi</label>
-                            <input type="date" id="transfer_date" name="date" value="{{ date('Y-m-d') }}" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="date" id="transfer_date" name="date" value="{{ date('Y-m-d') }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <div>
                             <label for="transfer_notes" class="block text-sm font-medium text-gray-900 mb-1">Catatan / Keterangan (Opsional)</label>
-                            <input type="text" id="transfer_notes" name="notes" placeholder="Contoh: Top Up Gopay via BCA" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" id="transfer_notes" name="notes" placeholder="Contoh: Top Up Gopay via BCA" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
                     </div>
                 </div>

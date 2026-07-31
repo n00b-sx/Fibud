@@ -160,7 +160,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="modal-account" class="block text-sm font-medium text-gray-900 mb-1">Rekening / Sumber Dana</label>
-                                <select id="modal-account" name="account_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <select id="modal-account" name="account_id" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                     <option value="" disabled selected>-- Pilih Rekening --</option>
                                     @php
                                         $allAccounts = \App\Models\Account::orderBy('name')->get();
@@ -173,7 +173,7 @@
 
                             <div>
                                 <label for="modal-category" class="block text-sm font-medium text-gray-900 mb-1">Kategori Transaksi</label>
-                                <select id="modal-category" name="category_id" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <select id="modal-category" name="category_id" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                     <option value="" disabled selected>-- Pilih Kategori --</option>
                                     @php
                                         $allCategories = \App\Models\Category::orderBy('type')->orderBy('name')->get();
@@ -195,14 +195,14 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="modal-date" class="block text-sm font-medium text-gray-900 mb-1">Tanggal</label>
-                                <input type="date" id="modal-date" name="date" value="{{ date('Y-m-d') }}" required class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <input type="date" id="modal-date" name="date" value="{{ date('Y-m-d') }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
 
                             <div>
                                 <label for="modal-amount" class="block text-sm font-medium text-gray-900 mb-1">Total Nominal Transaksi (Rp)</label>
                                 <div class="relative">
                                     <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
-                                    <input type="text" id="modal-amount" name="amount" data-currency-input placeholder="0" class="py-2 ps-9 pe-3 block w-full border-gray-200 rounded-lg text-sm font-bold focus:border-orange-500 focus:ring-orange-500">
+                                    <input type="text" id="modal-amount" name="amount" data-currency-input placeholder="0" class="py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 </div>
                                 <span class="text-[11px] text-gray-500">Format ribuan otomatis (cth: 10000 -> 10.000). Otomatis dihitung jika mengisi Struk.</span>
                             </div>
@@ -211,12 +211,12 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label id="modal-source-dest-label" for="modal-source-destination" class="block text-sm font-medium text-gray-900 mb-1">Sumber / Tujuan Dana</label>
-                                <input type="text" id="modal-source-destination" name="source_destination" placeholder="Contoh: PT ABC (Sumber) / Indomaret (Tujuan)" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" id="modal-source-destination" name="source_destination" placeholder="Contoh: PT ABC (Sumber) / Indomaret (Tujuan)" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
 
                             <div>
                                 <label for="modal-description" class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                                <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                             </div>
                         </div>
 
@@ -347,16 +347,16 @@
                 row.className = 'receipt-item-row grid grid-cols-12 gap-2 items-center bg-gray-50 p-2 rounded-lg border border-gray-200';
                 row.innerHTML = `
                     <div class="col-span-4 sm:col-span-4">
-                        <input type="text" name="items[${itemIndex}][name]" value="${name}" placeholder="Nama barang (cth: Susu 1L)" required class="py-1.5 px-2 block w-full border-gray-200 rounded-md text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <input type="text" name="items[${itemIndex}][name]" value="${name}" placeholder="Nama barang (cth: Susu 1L)" required class="py-1.5 px-2 block w-full bg-white border border-gray-300 rounded-md text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div class="col-span-2 sm:col-span-2">
-                        <input type="number" name="items[${itemIndex}][quantity]" value="${qty}" min="1" placeholder="Qty" required class="item-qty py-1.5 px-2 block w-full border-gray-200 rounded-md text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <input type="number" name="items[${itemIndex}][quantity]" value="${qty}" min="1" placeholder="Qty" required class="item-qty py-1.5 px-2 block w-full bg-white border border-gray-300 rounded-md text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div class="col-span-3 sm:col-span-3">
-                        <input type="text" name="items[${itemIndex}][unit_price]" value="${price}" data-currency-input placeholder="Harga" required class="item-price py-1.5 px-2 block w-full border-gray-200 rounded-md text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <input type="text" name="items[${itemIndex}][unit_price]" value="${price}" data-currency-input placeholder="Harga" required class="item-price py-1.5 px-2 block w-full bg-white border border-gray-300 rounded-md text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div class="col-span-2 sm:col-span-2">
-                        <input type="text" name="items[${itemIndex}][discount]" value="${discount}" data-currency-input placeholder="Diskon" class="item-discount py-1.5 px-2 block w-full border-gray-200 rounded-md text-xs focus:border-orange-500 focus:ring-orange-500">
+                        <input type="text" name="items[${itemIndex}][discount]" value="${discount}" data-currency-input placeholder="Diskon" class="item-discount py-1.5 px-2 block w-full bg-white border border-gray-300 rounded-md text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
                     <div class="col-span-1 flex items-center justify-end">
                         <button type="button" class="btn-remove-item text-rose-500 hover:text-rose-700 p-1">
