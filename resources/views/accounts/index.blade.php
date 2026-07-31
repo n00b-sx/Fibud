@@ -18,7 +18,7 @@
             </a>
             <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-account-modal">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                + Tambah Rekening
+                Tambah Rekening
             </button>
         </div>
     </div>
