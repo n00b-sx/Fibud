@@ -70,7 +70,7 @@
                     <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Kategori --</option>
                         @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                            <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                         @endforeach
                     </select>
                 </div>

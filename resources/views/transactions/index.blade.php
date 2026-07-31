@@ -124,7 +124,7 @@
                     <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         <option value="">-- Semua Kategori --</option>
                         @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                            <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -151,7 +151,7 @@
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
                         <th class="py-3 px-4 text-start">Tanggal</th>
                         <th class="py-3 px-4 text-start">Rekening</th>
-                        <th class="py-3 px-4 text-start">Kategori</th>
+                        <th class="py-3 px-4 text-center">Kategori</th>
                         <th class="py-3 px-4 text-start">Sumber / Tujuan Dana</th>
                         <th class="py-3 px-4 text-start">Keterangan / Struk</th>
                         <th class="py-3 px-4 text-end">Nominal</th>
@@ -167,9 +167,10 @@
                         <td class="py-3 px-4 whitespace-nowrap text-xs font-semibold text-gray-800">
                             {{ $tx->account->name ?? 'Default' }}
                         </td>
-                        <td class="py-3 px-4 whitespace-nowrap">
-                            <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium {{ $tx->category->type === 'income' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-gray-100 text-gray-700 border border-gray-200' }}">
-                                {{ $tx->category->name }}
+                        <!-- COLUMN: EMOJI BADGE ONLY WITH HOVER TOOLTIP -->
+                        <td class="py-3 px-4 text-center whitespace-nowrap">
+                            <span class="inline-flex items-center justify-center size-8 rounded-full text-base shadow-2xs transition hover:scale-110 cursor-help {{ $tx->category->type === 'income' ? 'bg-emerald-50 border border-emerald-200' : 'bg-gray-100 border border-gray-200' }}" title="{{ $tx->category->name }} ({{ $tx->category->type === 'income' ? 'Pemasukan' : 'Pengeluaran' }})">
+                                {{ $tx->category->icon_or_default }}
                             </span>
                         </td>
                         <!-- COLUMN: SUMBER / TUJUAN DANA -->
@@ -324,12 +325,12 @@
                             <select name="category_id" required class="edit-category-select py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 <optgroup label="--- PEMASUKAN ---">
                                     @foreach($categories->where('type', 'income') as $cat)
-                                        <option value="{{ $cat->id }}" data-type="income" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pemasukan] {{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" data-type="income" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                                     @endforeach
                                 </optgroup>
                                 <optgroup label="--- PENGELUARAN ---">
                                     @foreach($categories->where('type', 'expense') as $cat)
-                                        <option value="{{ $cat->id }}" data-type="expense" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>[Pengeluaran] {{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" data-type="expense" {{ $tx->category_id == $cat->id ? 'selected' : '' }}>{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                                     @endforeach
                                 </optgroup>
                             </select>

@@ -25,7 +25,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
-                        <th class="py-3 px-4 text-start">Nama Kategori</th>
+                        <th class="py-3 px-4 text-start">Kategori</th>
                         <th class="py-3 px-4 text-start">Tipe</th>
                         <th class="py-3 px-4 text-center">Jumlah Transaksi</th>
                         <th class="py-3 px-4 text-center">Aksi</th>
@@ -34,8 +34,11 @@
                 <tbody class="divide-y divide-gray-200 text-sm">
                     @forelse($categories as $cat)
                     <tr class="hover:bg-gray-50/80 transition">
-                        <td class="py-3 px-4 font-bold text-gray-900">
-                            {{ $cat->name }}
+                        <td class="py-3 px-4 font-bold text-gray-900 flex items-center gap-x-2">
+                            <span class="inline-flex items-center justify-center size-8 rounded-full bg-gray-100 border border-gray-200 text-base">
+                                {{ $cat->icon_or_default }}
+                            </span>
+                            <span>{{ $cat->name }}</span>
                         </td>
                         <td class="py-3 px-4 whitespace-nowrap">
                             <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium {{ $cat->type === 'income' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-gray-100 text-gray-700 border border-gray-200' }}">
@@ -90,6 +93,12 @@
                 @csrf
                 <div class="p-4 space-y-4">
                     <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Emoji / Ikon Kategori</label>
+                        <input type="text" name="icon" placeholder="Pilih emoji (cth: 💵, ☕, 🛒, 🍕)" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                        <span class="text-[11px] text-gray-500">Ketikkan atau salin emoji untuk menggambarkan kategori ini.</span>
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Nama Kategori</label>
                         <input type="text" name="name" required placeholder="Contoh: Investasi, Tagihan Listrik" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
@@ -128,6 +137,11 @@
                 @csrf
                 @method('PUT')
                 <div class="p-4 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Emoji / Ikon Kategori</label>
+                        <input type="text" name="icon" value="{{ $cat->icon }}" placeholder="Pilih emoji (cth: 💵, ☕, 🛒, 🍕)" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    </div>
+
                     <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Nama Kategori</label>
                         <input type="text" name="name" value="{{ $cat->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">

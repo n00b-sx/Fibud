@@ -180,12 +180,12 @@
                                     @endphp
                                     <optgroup label="--- PEMASUKAN ---">
                                         @foreach($allCategories->where('type', 'income') as $cat)
-                                            <option value="{{ $cat->id }}">[Pemasukan] {{ $cat->name }}</option>
+                                            <option value="{{ $cat->id }}" data-type="income">{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                                         @endforeach
                                     </optgroup>
                                     <optgroup label="--- PENGELUARAN ---">
                                         @foreach($allCategories->where('type', 'expense') as $cat)
-                                            <option value="{{ $cat->id }}">[Pengeluaran] {{ $cat->name }}</option>
+                                            <option value="{{ $cat->id }}" data-type="expense">{{ $cat->icon_or_default }} {{ $cat->name }}</option>
                                         @endforeach
                                     </optgroup>
                                 </select>
@@ -299,12 +299,12 @@
             if (modalCatSelect && modalSourceLabel) {
                 modalCatSelect.addEventListener('change', function () {
                     const selectedOpt = modalCatSelect.options[modalCatSelect.selectedIndex];
-                    const labelText = selectedOpt.text;
+                    const catType = selectedOpt.dataset.type;
 
-                    if (labelText.includes('[Pemasukan]')) {
+                    if (catType === 'income') {
                         modalSourceLabel.textContent = 'Sumber Dana (Diterima Dari)';
                         if (modalSourceInput) modalSourceInput.placeholder = 'Contoh: PT ABC, Klien Budi, Hadiah';
-                    } else if (labelText.includes('[Pengeluaran]')) {
+                    } else if (catType === 'expense') {
                         modalSourceLabel.textContent = 'Tujuan Dana (Dibayarkan Ke)';
                         if (modalSourceInput) modalSourceInput.placeholder = 'Contoh: Indomaret, PLN, Tokopedia';
                     }
