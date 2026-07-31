@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="flex gap-2">
-                    <button type="submit" class="w-full py-2 px-3 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-gray-800 transition">
+                    <button type="submit" class="w-full py-2 px-3 bg-white border border-gray-200 text-gray-800 rounded-lg text-xs font-semibold hover:bg-gray-50 hover:border-gray-300 shadow-sm transition">
                         Terapkan Filter Laporan
                     </button>
                     <a href="{{ route('reports.index') }}" class="py-2 px-3 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-200 flex items-center justify-center">

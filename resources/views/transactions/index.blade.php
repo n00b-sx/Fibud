@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="flex gap-2">
-                    <button type="submit" class="w-full py-2 px-3 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-gray-800 transition">
+                    <button type="submit" class="w-full py-2 px-3 bg-white border border-gray-200 text-gray-800 rounded-lg text-xs font-semibold hover:bg-gray-50 hover:border-gray-300 shadow-sm transition">
                         Terapkan Filter
                     </button>
                     @if(request()->hasAny(['search', 'type', 'category_id', 'account_id', 'period', 'start_date', 'end_date']))
