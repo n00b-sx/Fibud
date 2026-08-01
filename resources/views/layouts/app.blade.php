@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="h-full bg-[#F3F4F6] font-sans antialiased">
+<html lang="id" class="h-full bg-white font-sans antialiased">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#F3F4F6] text-gray-900 min-h-screen">
+<body class="bg-white text-gray-900 min-h-screen">
 
     <!-- ========== HEADER (30% WHITE STRUCTURE + SHADOW-SM) ========== -->
     <header class="sticky top-0 z-40 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white border-b border-gray-200 shadow-sm py-2.5 sm:py-3.5">
