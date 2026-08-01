@@ -5,64 +5,64 @@
 @section('content')
 <div class="space-y-6">
 
-    <!-- Top Summary Cards (60% Creme #F3F4F6 BG, 30% Light Green Cards #E8F5E9 + Shadow-SM, 10% Green Accent #66BB6A) -->
+    <!-- Top Summary Cards (Custom Redesign: Card 1 White, Card 2 Emerald, Card 3 Red Rose, Card 4 White) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Total Saldo -->
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
+        <!-- 1. Total Saldo (Semua Rekening) -->
+        <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Total Saldo (Semua Rekening)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-100 text-emerald-700">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Saldo (Semua Rekening)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-50 text-emerald-600">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-gray-900">Rp {{ number_format($totalBalance, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-600 mt-1">Gabungan sisa dana dari {{ count($accounts) }} dompet/rekening</p>
+            <p class="text-xs text-gray-500 mt-1">Gabungan sisa dana dari {{ count($accounts) }} dompet/rekening</p>
         </div>
 
-        <!-- Pemasukan Bulan Ini -->
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
+        <!-- 2. Pemasukan Bulan Ini (Hijau Emerald, Teks Putih) -->
+        <div class="bg-[#10B981] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pemasukan Bulan Ini</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-100 text-emerald-700">
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pemasukan Bulan Ini</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/><path d="M11 8h7"/><path d="M11 12h4"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
-                <h3 class="text-2xl font-extrabold text-emerald-600">+Rp {{ number_format($monthlyIncome, 0, ',', '.') }}</h3>
+                <h3 class="text-2xl font-extrabold text-white">+Rp {{ number_format($monthlyIncome, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-600 mt-1">Total pemasukan bulan {{ date('F Y') }}</p>
+            <p class="text-xs text-white/90 mt-1">Total pemasukan bulan {{ date('F Y') }}</p>
         </div>
 
-        <!-- Pengeluaran Bulan Ini -->
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
+        <!-- 3. Pengeluaran Bulan Ini (Red Rose, Teks Putih) -->
+        <div class="bg-[#F43F5E] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pengeluaran Bulan Ini</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-rose-50 text-rose-600">
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pengeluaran Bulan Ini</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/><path d="M11 16h7"/><path d="M11 20h4"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
-                <h3 class="text-2xl font-extrabold text-gray-900">-Rp {{ number_format($monthlyExpense, 0, ',', '.') }}</h3>
+                <h3 class="text-2xl font-extrabold text-white">-Rp {{ number_format($monthlyExpense, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-600 mt-1">Total belanja & pengeluaran</p>
+            <p class="text-xs text-white/90 mt-1">Total belanja & pengeluaran</p>
         </div>
 
-        <!-- Arus Kas Bersih -->
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
+        <!-- 4. Arus Kas Bersih (NET) (Background Putih, Teks Dinamis) -->
+        <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Arus Kas Bersih (Net)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $netFlow >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-50 text-rose-600' }}">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $netFlow > 0 ? 'bg-emerald-100 text-emerald-700' : ($netFlow < 0 ? 'bg-rose-100 text-rose-600' : 'bg-gray-100 text-gray-700') }}">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
-                <h3 class="text-2xl font-extrabold {{ $netFlow >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
-                    {{ $netFlow >= 0 ? '+' : '-' }}Rp {{ number_format(abs($netFlow), 0, ',', '.') }}
+                <h3 class="text-2xl font-extrabold {{ $netFlow > 0 ? 'text-[#10B981]' : ($netFlow < 0 ? 'text-[#F43F5E]' : 'text-gray-900') }}">
+                    {{ $netFlow > 0 ? '+' : ($netFlow < 0 ? '-' : '') }}Rp {{ number_format(abs($netFlow), 0, ',', '.') }}
                 </h3>
             </div>
-            <p class="text-xs text-gray-600 mt-1">Selisih pemasukan - pengeluaran</p>
+            <p class="text-xs text-gray-500 mt-1">Selisih pemasukan - pengeluaran</p>
         </div>
     </div>
 
