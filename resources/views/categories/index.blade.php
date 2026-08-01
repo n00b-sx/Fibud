@@ -9,33 +9,36 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Kelola Kategori Transaksi</h1>
-            <p class="text-xs sm:text-sm text-gray-500">Ubah atau hapus jenis kategori pemasukan dan pengeluaran</p>
+            <p class="text-xs sm:text-sm text-gray-600">Ubah atau hapus jenis kategori pemasukan dan pengeluaran</p>
         </div>
         <div>
-            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-category-modal">
+            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] shadow-sm transition" data-hs-overlay="#hs-add-category-modal">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Kategori Baru
             </button>
         </div>
     </div>
 
-    <!-- CATEGORIES TABLE CARD (PURE WHITE CARDS + SHADOW-SM ON CREME BG) -->
-    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+    <!-- CATEGORIES TABLE CARD (30% LIGHT GREEN CONTAINER #E8F5E9 + SHADOW-SM) -->
+    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+            <table class="min-w-full divide-y divide-[#C8E6C9]">
+                <thead class="bg-[#DCEDC8]/60 border-b border-[#C8E6C9]">
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
-                        <th class="py-3 px-4 text-start">Nama Kategori</th>
+                        <th class="py-3 px-4 text-start">Kategori</th>
                         <th class="py-3 px-4 text-start">Tipe</th>
                         <th class="py-3 px-4 text-center">Jumlah Transaksi</th>
                         <th class="py-3 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200 text-sm">
+                <tbody class="divide-y divide-[#C8E6C9] bg-white/90 text-sm">
                     @forelse($categories as $cat)
-                    <tr class="hover:bg-gray-50/80 transition">
-                        <td class="py-3 px-4 font-bold text-gray-900">
-                            {{ $cat->name }}
+                    <tr class="hover:bg-[#E8F5E9]/60 transition">
+                        <td class="py-3 px-4 font-bold text-gray-900 flex items-center gap-x-2">
+                            <span class="inline-flex items-center justify-center size-8 rounded-full bg-gray-100 border border-gray-200 text-base">
+                                {{ $cat->icon_or_default }}
+                            </span>
+                            <span>{{ $cat->name }}</span>
                         </td>
                         <td class="py-3 px-4 whitespace-nowrap">
                             <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-lg text-xs font-medium {{ $cat->type === 'income' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-gray-100 text-gray-700 border border-gray-200' }}">
@@ -48,7 +51,7 @@
                         <td class="py-3 px-4 text-center whitespace-nowrap">
                             <div class="flex items-center justify-center gap-x-2">
                                 <!-- Button Edit Modal -->
-                                <button type="button" class="text-xs font-semibold text-orange-600 hover:text-orange-800 py-1 px-2 rounded-lg hover:bg-orange-50 transition" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">
+                                <button type="button" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 py-1 px-2 rounded-lg hover:bg-emerald-50 transition" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">
                                     Ubah
                                 </button>
 
@@ -90,13 +93,19 @@
                 @csrf
                 <div class="p-4 space-y-4">
                     <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Emoji / Ikon Kategori</label>
+                        <input type="text" name="icon" placeholder="Pilih emoji (cth: 💵, ☕, 🛒, 🍕)" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                        <span class="text-[11px] text-gray-500">Ketikkan atau salin emoji untuk menggambarkan kategori ini.</span>
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Nama Kategori</label>
-                        <input type="text" name="name" required placeholder="Contoh: Investasi, Tagihan Listrik" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                        <input type="text" name="name" required placeholder="Contoh: Investasi, Tagihan Listrik" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Tipe Kategori</label>
-                        <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                        <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                             <option value="expense" selected>Pengeluaran</option>
                             <option value="income">Pemasukan</option>
                         </select>
@@ -105,7 +114,7 @@
 
                 <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
                     <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-add-category-modal">Batal</button>
-                    <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">Simpan Kategori</button>
+                    <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Kategori</button>
                 </div>
             </form>
         </div>
@@ -129,13 +138,18 @@
                 @method('PUT')
                 <div class="p-4 space-y-4">
                     <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Emoji / Ikon Kategori</label>
+                        <input type="text" name="icon" value="{{ $cat->icon }}" placeholder="Pilih emoji (cth: 💵, ☕, 🛒, 🍕)" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Nama Kategori</label>
-                        <input type="text" name="name" value="{{ $cat->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                        <input type="text" name="name" value="{{ $cat->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-900 mb-1">Tipe Kategori</label>
-                        <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                        <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                             <option value="expense" {{ $cat->type === 'expense' ? 'selected' : '' }}>Pengeluaran</option>
                             <option value="income" {{ $cat->type === 'income' ? 'selected' : '' }}>Pemasukan</option>
                         </select>
@@ -144,7 +158,7 @@
 
                 <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
                     <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">Batal</button>
-                    <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">Simpan Perubahan</button>
+                    <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

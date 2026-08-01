@@ -5,40 +5,40 @@
 @section('content')
 <div class="space-y-6">
 
-    <!-- Top Summary Cards (60% Creme #F3F4F6 BG, 30% Pure White Cards + Shadow-SM, 10% Warm Orange Accent) -->
+    <!-- Top Summary Cards (60% Creme #F3F4F6 BG, 30% Light Green Cards #E8F5E9 + Shadow-SM, 10% Green Accent #66BB6A) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Total Saldo -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Saldo (Semua Rekening)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-orange-50 text-orange-600">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Total Saldo (Semua Rekening)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-100 text-emerald-700">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-gray-900">Rp {{ number_format($totalBalance, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Gabungan sisa dana dari {{ count($accounts) }} dompet/rekening</p>
+            <p class="text-xs text-gray-600 mt-1">Gabungan sisa dana dari {{ count($accounts) }} dompet/rekening</p>
         </div>
 
         <!-- Pemasukan Bulan Ini -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pemasukan Bulan Ini</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-50 text-emerald-600">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pemasukan Bulan Ini</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-100 text-emerald-700">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/><path d="M11 8h7"/><path d="M11 12h4"/></svg>
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-emerald-600">+Rp {{ number_format($monthlyIncome, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Total pemasukan bulan {{ date('F Y') }}</p>
+            <p class="text-xs text-gray-600 mt-1">Total pemasukan bulan {{ date('F Y') }}</p>
         </div>
 
         <!-- Pengeluaran Bulan Ini -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pengeluaran Bulan Ini</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pengeluaran Bulan Ini</span>
                 <span class="inline-flex justify-center items-center size-8 rounded-lg bg-rose-50 text-rose-600">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/><path d="M11 16h7"/><path d="M11 20h4"/></svg>
                 </span>
@@ -46,14 +46,14 @@
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-gray-900">-Rp {{ number_format($monthlyExpense, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Total belanja & pengeluaran</p>
+            <p class="text-xs text-gray-600 mt-1">Total belanja & pengeluaran</p>
         </div>
 
         <!-- Arus Kas Bersih -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $netFlow >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600' }}">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Arus Kas Bersih (Net)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $netFlow >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-50 text-rose-600' }}">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
                 </span>
             </div>
@@ -62,28 +62,28 @@
                     {{ $netFlow >= 0 ? '+' : '-' }}Rp {{ number_format(abs($netFlow), 0, ',', '.') }}
                 </h3>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Selisih pemasukan - pengeluaran</p>
+            <p class="text-xs text-gray-600 mt-1">Selisih pemasukan - pengeluaran</p>
         </div>
     </div>
 
     <!-- REKENING / DOMPET QUICK OVERVIEW -->
-    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h2 class="text-base font-bold text-gray-900">Rincian Saldo Per Rekening</h2>
-                <p class="text-xs text-gray-500">Pantau saldo aktual di setiap rekening atau dompet digital Anda</p>
+                <p class="text-xs text-gray-600">Pantau saldo aktual di setiap rekening atau dompet digital Anda</p>
             </div>
-            <a href="{{ route('accounts.index') }}" class="text-xs font-semibold text-orange-600 hover:text-orange-700">
+            <a href="{{ route('accounts.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800">
                 Kelola Rekening →
             </a>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             @foreach($accounts as $acc)
-            <div class="p-3.5 bg-gray-50 border border-gray-200 rounded-xl">
+            <div class="p-3.5 bg-white/90 border border-[#C8E6C9] rounded-xl shadow-2xs">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold text-gray-700">{{ $acc->name }}</span>
-                    <span class="text-[11px] text-gray-400">{{ $acc->account_number ?? 'Utama' }}</span>
+                    <span class="text-xs font-semibold text-gray-800">{{ $acc->name }}</span>
+                    <span class="text-[11px] text-gray-500">{{ $acc->account_number ?? 'Utama' }}</span>
                 </div>
                 <div class="mt-2 text-lg font-bold text-gray-900">
                     Rp {{ number_format($acc->balance, 0, ',', '.') }}
@@ -96,22 +96,22 @@
     <!-- CHARTS SECTION GRID -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Main Line Chart: Monthly Trend -->
-        <div class="lg:col-span-2 bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+        <div class="lg:col-span-2 bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Tren Keuangan Bulanan</h2>
-                    <p class="text-xs text-gray-500">Perbandingan pemasukan vs pengeluaran tahun {{ date('Y') }}</p>
+                    <p class="text-xs text-gray-600">Perbandingan pemasukan vs pengeluaran tahun {{ date('Y') }}</p>
                 </div>
             </div>
             <div id="monthly-trend-chart" class="min-h-[300px]"></div>
         </div>
 
         <!-- Donut Chart: Expense Breakdown -->
-        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Proporsi Pengeluaran</h2>
-                    <p class="text-xs text-gray-500">Berdasarkan kategori bulan ini</p>
+                    <p class="text-xs text-gray-600">Berdasarkan kategori bulan ini</p>
                 </div>
             </div>
             <div id="expense-breakdown-chart" class="min-h-[300px] flex items-center justify-center"></div>
@@ -122,20 +122,20 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <!-- Budgeting Progress List -->
-        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Status Batas Anggaran (Budget)</h2>
-                    <p class="text-xs text-gray-500">Penggunaan kuota anggaran bulan {{ date('F Y') }}</p>
+                    <p class="text-xs text-gray-600">Penggunaan kuota anggaran bulan {{ date('F Y') }}</p>
                 </div>
-                <a href="{{ route('budgets.index') }}" class="text-xs font-semibold text-orange-600 hover:text-orange-700">
+                <a href="{{ route('budgets.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800">
                     Atur Budget →
                 </a>
             </div>
 
             <div class="space-y-4">
                 @forelse($budgetProgress as $budget)
-                <div class="p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                <div class="p-3 bg-white/90 border border-[#C8E6C9] rounded-xl shadow-2xs">
                     <div class="flex justify-between items-center text-xs mb-1.5">
                         <span class="font-semibold text-gray-900">{{ $budget['category_name'] }}</span>
                         <span class="text-gray-600 font-medium">
@@ -143,45 +143,45 @@
                         </span>
                     </div>
 
-                    <!-- Progress Bar dengan Aksen Warm Orange & Merah Error -->
+                    <!-- Progress Bar dengan Status Warna: Red Over, Amber Warning >= 80%, Green Normal -->
                     <div class="flex w-full h-2.5 bg-gray-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="{{ $budget['percentage'] }}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="flex flex-col justify-center rounded-full overflow-hidden text-xs text-white text-center whitespace-nowrap transition-all duration-500 {{ $budget['is_over'] ? 'bg-rose-600' : 'bg-orange-500' }}" style="width: {{ min(100, $budget['percentage']) }}%"></div>
+                        <div class="flex flex-col justify-center rounded-full overflow-hidden text-xs text-white text-center whitespace-nowrap transition-all duration-500 {{ $budget['is_over'] ? 'bg-rose-600' : ($budget['percentage'] >= 80 ? 'bg-amber-500' : 'bg-[#66BB6A]') }}" style="width: {{ min(100, $budget['percentage']) }}%"></div>
                     </div>
 
-                    <div class="flex justify-between items-center text-[11px] mt-1 text-gray-500">
-                        <span class="{{ $budget['is_over'] ? 'text-rose-600 font-bold' : '' }}">
-                            {{ $budget['is_over'] ? 'Melebihi Batas Anggaran!' : $budget['percentage'] . '% terpakai' }}
+                    <div class="flex justify-between items-center text-[11px] mt-1 text-gray-600">
+                        <span class="{{ $budget['is_over'] ? 'text-rose-600 font-bold' : ($budget['percentage'] >= 80 ? 'text-amber-700 font-bold' : 'text-emerald-700 font-medium') }}">
+                            {{ $budget['is_over'] ? 'Melebihi Batas Anggaran!' : ($budget['percentage'] >= 80 ? 'Mendekati Kuota (' . $budget['percentage'] . '%)' : $budget['percentage'] . '% terpakai') }}
                         </span>
-                        <span>Sisa: <strong class="text-gray-800">Rp {{ number_format($budget['remaining'], 0, ',', '.') }}</strong></span>
+                        <span>Sisa: <strong class="text-gray-900 font-bold">Rp {{ number_format($budget['remaining'], 0, ',', '.') }}</strong></span>
                     </div>
                 </div>
                 @empty
                 <div class="text-center py-6 text-xs text-gray-500">
                     Belum ada batas anggaran diset untuk bulan ini.
                     <br>
-                    <a href="{{ route('budgets.index') }}" class="text-orange-600 font-semibold underline mt-1 inline-block">Set Budget Sekarang</a>
+                    <a href="{{ route('budgets.index') }}" class="text-emerald-700 font-semibold underline mt-1 inline-block">Set Budget Sekarang</a>
                 </div>
                 @endforelse
             </div>
         </div>
 
         <!-- Recent 5 Transactions -->
-        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Transaksi Terakhir</h2>
-                    <p class="text-xs text-gray-500">5 catatan transaksi terbaru</p>
+                    <p class="text-xs text-gray-600">5 catatan transaksi terbaru</p>
                 </div>
-                <a href="{{ route('transactions.index') }}" class="text-xs font-semibold text-orange-600 hover:text-orange-700">
+                <a href="{{ route('transactions.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800">
                     Lihat Semua →
                 </a>
             </div>
 
-            <div class="divide-y divide-gray-100">
+            <div class="divide-y divide-[#C8E6C9]">
                 @forelse($recentTransactions as $tx)
                 <div class="py-3 flex items-center justify-between">
                     <div class="flex items-center gap-x-3">
-                        <div class="size-9 rounded-xl flex items-center justify-center {{ $tx->category->type === 'income' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-700' }}">
+                        <div class="size-9 rounded-xl flex items-center justify-center {{ $tx->category->type === 'income' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-white text-gray-700 border border-gray-200' }}">
                             @if($tx->category->type === 'income')
                                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/></svg>
                             @else
@@ -190,12 +190,12 @@
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-900">{{ $tx->description ?? $tx->category->name }}</p>
-                            <div class="flex items-center gap-x-2 text-[11px] text-gray-500 mt-0.5">
+                            <div class="flex items-center gap-x-2 text-[11px] text-gray-600 mt-0.5">
                                 <span>{{ $tx->date->format('d M Y') }}</span>
                                 <span>•</span>
                                 <span>{{ $tx->account->name ?? 'Default' }}</span>
                                 <span>•</span>
-                                <span class="font-medium text-gray-700">{{ $tx->category->name }}</span>
+                                <span class="font-medium text-gray-800">{{ $tx->category->icon_or_default }} {{ $tx->category->name }}</span>
                             </div>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
 
 </div>
 
-<!-- APEXCHARTS LIBRARY & INITIALIZATION WITH WARM ORANGE #F97316 ACCENT -->
+<!-- APEXCHARTS LIBRARY & INITIALIZATION WITH GREEN ACCENT -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -238,7 +238,7 @@
                 toolbar: { show: false },
                 fontFamily: 'Inter, sans-serif'
             },
-            colors: ['#10B981', '#F97316'], // Emerald Green & Warm Orange
+            colors: ['#10B981', '#F43F5E'], // Emerald Green & Rose Red
             dataLabels: { enabled: false },
             stroke: { curve: 'smooth', width: 2.5 },
             fill: {
@@ -252,18 +252,18 @@
             },
             xaxis: {
                 categories: months,
-                labels: { style: { fontSize: '11px', colors: '#6B7280' } }
+                labels: { style: { fontSize: '11px', colors: '#4B5563' } }
             },
             yaxis: {
                 labels: {
-                    style: { fontSize: '11px', colors: '#6B7280' },
+                    style: { fontSize: '11px', colors: '#4B5563' },
                     formatter: (val) => 'Rp ' + new Intl.NumberFormat('id-ID').format(val)
                 }
             },
             tooltip: {
                 y: { formatter: (val) => 'Rp ' + new Intl.NumberFormat('id-ID').format(val) }
             },
-            grid: { borderColor: '#F3F4F6' }
+            grid: { borderColor: '#C8E6C9' }
         };
 
         const trendChart = new ApexCharts(document.querySelector("#monthly-trend-chart"), trendOptions);
@@ -282,7 +282,7 @@
                 height: 280,
                 fontFamily: 'Inter, sans-serif'
             },
-            colors: ['#F97316', '#FB923C', '#FDBA74', '#10B981', '#06B6D4', '#8B5CF6', '#EC4899'],
+            colors: ['#66BB6A', '#F43F5E', '#F59E0B', '#10B981', '#06B6D4', '#8B5CF6', '#EC4899'],
             legend: { position: 'bottom', fontSize: '12px' },
             dataLabels: { enabled: false },
             tooltip: {

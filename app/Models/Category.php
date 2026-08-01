@@ -10,11 +10,25 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type'];
+    protected $fillable = ['name', 'type', 'icon'];
+
+    public function getIconOrDefaultAttribute(): string
+    {
+        if (!empty($this->icon)) {
+            return $this->icon;
+        }
+
+        return $this->type === 'income' ? '💵' : '💸';
+    }
+
+    public function getFormattedNameAttribute(): string
+    {
+        return $this->icon_or_default . ' ' . $this->name;
+    }
 
     public function transactions(): HasMany
     {
-        return $table = $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 
     public function budgets(): HasMany
