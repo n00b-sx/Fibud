@@ -67,23 +67,23 @@
     </div>
 
     <!-- REKENING / DOMPET QUICK OVERVIEW -->
-    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
+    <div class="bg-white rounded-xl p-5 shadow-none border-none">
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h2 class="text-base font-bold text-gray-900">Rincian Saldo Per Rekening</h2>
-                <p class="text-xs text-gray-600">Pantau saldo aktual di setiap rekening atau dompet digital Anda</p>
+                <p class="text-xs text-gray-500">Pantau saldo aktual di setiap rekening atau dompet digital Anda</p>
             </div>
-            <a href="{{ route('accounts.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800">
+            <a href="{{ route('accounts.index') }}" class="text-xs font-bold text-gray-900 hover:text-gray-700 transition">
                 Kelola Rekening →
             </a>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             @foreach($accounts as $acc)
-            <div class="p-3.5 bg-white/90 border border-[#C8E6C9] rounded-xl shadow-2xs">
+            <div class="p-3.5 bg-white rounded-xl shadow-md border-none">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-semibold text-gray-800">{{ $acc->name }}</span>
-                    <span class="text-[11px] text-gray-500">{{ $acc->account_number ?? 'Utama' }}</span>
+                    <span class="text-[11px] text-gray-400 font-medium">{{ $acc->account_number ?? 'Utama' }}</span>
                 </div>
                 <div class="mt-2 text-lg font-bold text-gray-900">
                     Rp {{ number_format($acc->balance, 0, ',', '.') }}
