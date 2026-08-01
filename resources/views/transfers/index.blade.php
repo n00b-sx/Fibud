@@ -108,8 +108,8 @@
         </div>
 
         @if($transfers->hasPages())
-        <div class="p-4 border-t border-gray-200">
-            {{ $transfers->links() }}
+        <div class="p-4 border-t border-[#C8E6C9] bg-white/70">
+            {{ $transfers->links('pagination::tailwind') }}
         </div>
         @endif
     </div>
