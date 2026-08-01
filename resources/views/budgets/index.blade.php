@@ -14,33 +14,33 @@
 
         <!-- Month Filter Picker -->
         <form action="{{ route('budgets.index') }}" method="GET" class="flex items-center gap-2">
-            <input type="month" name="month_year" value="{{ $selectedMonth }}" onchange="this.form.submit()" class="py-2 px-3 block bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs sm:text-sm focus:border-[#66BB6A] focus:ring-[#66BB6A] font-semibold shadow-sm">
+            <input type="month" name="month_year" value="{{ $selectedMonth }}" onchange="this.form.submit()" class="py-2 px-3 block bg-white border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-[#66BB6A] focus:ring-[#66BB6A] font-semibold shadow-xs">
         </form>
     </div>
 
-    <!-- BUDGET CARDS GRID (30% LIGHT GREEN CARDS #E8F5E9 + SHADOW-SM ON CREME BG) -->
+    <!-- BUDGET CARDS GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($budgetsData as $item)
-        <div class="flex flex-col bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col bg-white rounded-xl p-5 shadow-md border-none">
             <div class="flex items-start justify-between">
                 <div>
                     <h3 class="font-bold text-gray-900 text-base">{{ $item['category_name'] }}</h3>
-                    <span class="text-xs text-gray-600">Bulan {{ \Carbon\Carbon::createFromFormat('Y-m', $selectedMonth)->isoFormat('MMMM Y') }}</span>
+                    <span class="text-xs text-gray-500">Bulan {{ \Carbon\Carbon::createFromFormat('Y-m', $selectedMonth)->isoFormat('MMMM Y') }}</span>
                 </div>
-                <button type="button" class="py-1.5 px-3 inline-flex items-center gap-x-1.5 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition shadow-sm" data-hs-overlay="#hs-set-budget-modal-{{ $item['category_id'] }}">
+                <button type="button" class="py-1.5 px-3 inline-flex items-center gap-x-1.5 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition shadow-2xs" data-hs-overlay="#hs-set-budget-modal-{{ $item['category_id'] }}">
                     <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
                     {{ $item['has_budget'] ? 'Edit' : 'Set Budget' }}
                 </button>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-[#C8E6C9] space-y-3">
+            <div class="mt-4 pt-3 border-t border-gray-100 space-y-3">
                 <div class="flex justify-between items-baseline text-xs">
-                    <span class="text-gray-600 font-medium">Terpakai:</span>
+                    <span class="text-gray-500 font-medium">Terpakai:</span>
                     <span class="font-extrabold text-gray-900">Rp {{ number_format($item['spent'], 0, ',', '.') }}</span>
                 </div>
 
                 <div class="flex justify-between items-baseline text-xs">
-                    <span class="text-gray-600 font-medium">Batas Maksimal:</span>
+                    <span class="text-gray-500 font-medium">Batas Maksimal:</span>
                     <span class="font-bold text-gray-900">
                         {{ $item['amount_limit'] > 0 ? 'Rp ' . number_format($item['amount_limit'], 0, ',', '.') : 'Belum diset' }}
                     </span>
@@ -50,18 +50,18 @@
                 @if($item['amount_limit'] > 0)
                 <div>
                     <div class="flex justify-between items-center text-[11px] mb-1">
-                        <span class="{{ $item['is_over'] ? 'text-rose-600 font-bold' : ($item['percentage'] >= 80 ? 'text-amber-700 font-bold' : 'text-emerald-700 font-medium') }}">
+                        <span class="{{ $item['is_over'] ? 'text-rose-600 font-bold' : ($item['percentage'] >= 80 ? 'text-amber-700 font-bold' : 'text-emerald-600 font-medium') }}">
                             {{ $item['is_over'] ? 'Melebihi Budget!' : ($item['percentage'] >= 80 ? 'Mendekati Kuota (' . $item['percentage'] . '%)' : 'Terpakai') }}
                         </span>
                         <span class="font-extrabold text-gray-900">{{ $item['percentage'] }}%</span>
                     </div>
-                    <div class="flex w-full h-2.5 bg-gray-200/80 rounded-full overflow-hidden" role="progressbar" aria-valuenow="{{ $item['percentage'] }}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="flex w-full h-2.5 bg-gray-100 rounded-full overflow-hidden" role="progressbar" aria-valuenow="{{ $item['percentage'] }}" aria-valuemin="0" aria-valuemax="100">
                         <div class="flex flex-col justify-center rounded-full overflow-hidden text-xs text-white text-center whitespace-nowrap transition-all duration-500 {{ $item['is_over'] ? 'bg-rose-600' : ($item['percentage'] >= 80 ? 'bg-amber-500' : 'bg-[#66BB6A]') }}" style="width: {{ min(100, $item['percentage']) }}%"></div>
                     </div>
                 </div>
-                <p class="text-[11px] text-gray-600 text-end">Sisa: <span class="font-extrabold text-gray-900">Rp {{ number_format($item['remaining'], 0, ',', '.') }}</span></p>
+                <p class="text-[11px] text-gray-500 text-end">Sisa: <span class="font-extrabold text-gray-900">Rp {{ number_format($item['remaining'], 0, ',', '.') }}</span></p>
                 @else
-                <div class="py-2 text-center text-xs text-gray-600 bg-white/70 rounded-lg border border-[#C8E6C9]">
+                <div class="py-2 text-center text-xs text-gray-500 bg-gray-50 rounded-lg border border-gray-100">
                     Klik 'Set Budget' untuk menentukan kuota.
                 </div>
                 @endif

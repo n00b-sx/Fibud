@@ -23,18 +23,18 @@
         </div>
     </div>
 
-    <!-- ACCOUNTS GRID (30% LIGHT GREEN CONTAINER #E8F5E9 + SHADOW-SM) -->
+    <!-- ACCOUNTS GRID -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($accounts as $acc)
-        <div class="flex flex-col bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col bg-white rounded-xl p-5 shadow-md border-none">
             <div class="flex items-start justify-between">
                 <div class="flex items-center gap-x-3">
-                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-emerald-100 text-emerald-700">
+                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                         <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                     </span>
                     <div>
                         <h3 class="font-bold text-gray-900">{{ $acc->name }}</h3>
-                        <p class="text-xs text-gray-600">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
+                        <p class="text-xs text-gray-500">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
                     </div>
                 </div>
 
@@ -53,11 +53,11 @@
                 </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-[#C8E6C9] flex justify-between items-baseline">
-                <span class="text-xs text-gray-600 font-medium">Saldo Rekening:</span>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-baseline">
+                <span class="text-xs text-gray-500 font-medium">Saldo Rekening:</span>
                 <span class="text-lg font-extrabold text-gray-900">Rp {{ number_format($acc->balance, 0, ',', '.') }}</span>
             </div>
-            <p class="text-[11px] text-gray-500 text-end mt-0.5">Saldo awal: Rp {{ number_format($acc->initial_balance, 0, ',', '.') }}</p>
+            <p class="text-[11px] text-gray-400 text-end mt-0.5">Saldo awal: Rp {{ number_format($acc->initial_balance, 0, ',', '.') }}</p>
         </div>
 
         <!-- MODAL EDIT REKENING -->

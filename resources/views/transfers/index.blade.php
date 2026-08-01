@@ -21,34 +21,34 @@
 
     <!-- QUICK STATS CARDS -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Total Mutasi Recorded</span>
+        <div class="bg-white rounded-xl p-4 shadow-md border-none">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Mutasi Recorded</span>
             <div class="mt-2 text-2xl font-extrabold text-gray-900">{{ $transfers->total() }} Kali</div>
-            <p class="text-xs text-gray-600 mt-1">Riwayat pemindahan dana</p>
+            <p class="text-xs text-gray-500 mt-1">Riwayat pemindahan dana</p>
         </div>
 
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Jumlah Rekening Aktif</span>
-            <div class="mt-2 text-2xl font-extrabold text-emerald-700">{{ $accounts->count() }} Sumber Dana</div>
-            <p class="text-xs text-gray-600 mt-1">Bank, E-Wallet & Tunai</p>
+        <div class="bg-white rounded-xl p-4 shadow-md border-none">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Jumlah Rekening Aktif</span>
+            <div class="mt-2 text-2xl font-extrabold text-[#10B981]">{{ $accounts->count() }} Sumber Dana</div>
+            <p class="text-xs text-gray-500 mt-1">Bank, E-Wallet & Tunai</p>
         </div>
 
-        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm flex items-center justify-between">
+        <div class="bg-white rounded-xl p-4 shadow-md border-none flex items-center justify-between">
             <div>
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Butuh Rekening Baru?</span>
-                <p class="text-xs text-gray-600 mt-1">Tambah dompet atau bank baru</p>
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Butuh Rekening Baru?</span>
+                <p class="text-xs text-gray-500 mt-1">Tambah dompet atau bank baru</p>
             </div>
-            <a href="{{ route('accounts.index') }}" class="py-1.5 px-3 text-xs font-semibold rounded-lg bg-white border border-[#C8E6C9] text-gray-800 hover:bg-white/80 transition">
+            <a href="{{ route('accounts.index') }}" class="py-1.5 px-3 text-xs font-bold rounded-lg bg-gray-50 border border-gray-200 text-gray-900 hover:bg-gray-100 transition">
                 Kelola Rekening →
             </a>
         </div>
     </div>
 
-    <!-- TRANSFERS TABLE CARD (30% LIGHT GREEN CONTAINER #E8F5E9 + SHADOW-SM) -->
-    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl overflow-hidden shadow-sm">
+    <!-- TRANSFERS TABLE CARD -->
+    <div class="bg-white rounded-xl overflow-hidden shadow-md border-none">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-[#C8E6C9]">
-                <thead class="bg-[#DCEDC8]/60 border-b border-[#C8E6C9]">
+            <table class="min-w-full divide-y divide-gray-100">
+                <thead class="bg-gray-50 border-b border-gray-100">
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
                         <th class="py-3 px-4 text-start">Tanggal</th>
                         <th class="py-3 px-4 text-start">Dari Rekening</th>
@@ -60,9 +60,9 @@
                         <th class="py-3 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[#C8E6C9] bg-white/90 text-sm">
+                <tbody class="divide-y divide-gray-100 bg-white text-sm">
                     @forelse($transfers as $tf)
-                    <tr class="hover:bg-[#E8F5E9]/60 transition">
+                    <tr class="hover:bg-gray-50/60 transition">
                         <td class="py-3 px-4 whitespace-nowrap text-gray-600 text-xs sm:text-sm font-medium">
                             {{ $tf->date->format('d M Y') }}
                         </td>
@@ -70,7 +70,7 @@
                             <span class="font-bold text-gray-900">{{ $tf->fromAccount->name ?? 'Dihapus' }}</span>
                         </td>
                         <td class="py-3 px-4 text-center whitespace-nowrap">
-                            <span class="inline-flex items-center justify-center size-7 rounded-full bg-emerald-100 text-emerald-700">
+                            <span class="inline-flex items-center justify-center size-7 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
                                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </span>
                         </td>
@@ -108,7 +108,7 @@
         </div>
 
         @if($transfers->hasPages())
-        <div class="p-4 border-t border-[#C8E6C9] bg-white/70">
+        <div class="p-4 border-t border-gray-100 bg-white">
             {{ $transfers->links('pagination::tailwind') }}
         </div>
         @endif

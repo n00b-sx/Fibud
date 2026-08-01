@@ -19,11 +19,11 @@
         </div>
     </div>
 
-    <!-- CATEGORIES TABLE CARD (30% LIGHT GREEN CONTAINER #E8F5E9 + SHADOW-SM) -->
-    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl overflow-hidden shadow-sm">
+    <!-- CATEGORIES TABLE CARD -->
+    <div class="bg-white rounded-xl overflow-hidden shadow-md border-none">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-[#C8E6C9]">
-                <thead class="bg-[#DCEDC8]/60 border-b border-[#C8E6C9]">
+            <table class="min-w-full divide-y divide-gray-100">
+                <thead class="bg-gray-50 border-b border-gray-100">
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
                         <th class="py-3 px-4 text-start">Kategori</th>
                         <th class="py-3 px-4 text-start">Tipe</th>
@@ -31,9 +31,9 @@
                         <th class="py-3 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[#C8E6C9] bg-white/90 text-sm">
+                <tbody class="divide-y divide-gray-100 bg-white text-sm">
                     @forelse($categories as $cat)
-                    <tr class="hover:bg-[#E8F5E9]/60 transition">
+                    <tr class="hover:bg-gray-50/60 transition">
                         <td class="py-3 px-4 font-bold text-gray-900 flex items-center gap-x-2">
                             <span class="inline-flex items-center justify-center size-8 rounded-full bg-gray-100 border border-gray-200 text-base">
                                 {{ $cat->icon_or_default }}
