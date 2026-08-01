@@ -229,8 +229,8 @@
         </div>
 
         @if($transactions->hasPages())
-        <div class="p-4 border-t border-gray-200">
-            {{ $transactions->appends(request()->query())->links() }}
+        <div class="p-4 border-t border-[#C8E6C9] bg-white/70">
+            {{ $transactions->appends(request()->query())->links('pagination::tailwind') }}
         </div>
         @endif
     </div>
