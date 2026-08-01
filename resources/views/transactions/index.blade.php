@@ -9,36 +9,36 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Catatan Transaksi</h1>
-            <p class="text-xs sm:text-sm text-gray-500">Kelola riwayat pemasukan, pengeluaran, sumber/tujuan dana, dan rincian struk</p>
+            <p class="text-xs sm:text-sm text-gray-600">Kelola riwayat pemasukan, pengeluaran, sumber/tujuan dana, dan rincian struk</p>
         </div>
         <div>
-            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-transaction-modal">
+            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] shadow-sm transition" data-hs-overlay="#hs-add-transaction-modal">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Transaksi Baru
             </button>
         </div>
     </div>
 
-    <!-- CARDS AKUMULASI HASIL FILTER (60-30-10 DESIGN SYSTEM + SHADOW-SM) -->
+    <!-- CARDS AKUMULASI HASIL FILTER (60-30-10 GREEN DESIGN SYSTEM + SHADOW-SM) -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <!-- Akumulasi Pemasukan Filtered -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pemasukan (Hasil Filter)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-50 text-emerald-600">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pemasukan (Hasil Filter)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-100 text-emerald-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"/><path d="m16 19 3 3 3-3"/><path d="M18 12h.01"/><path d="M19 16v6"/><path d="M6 12h.01"/><circle cx="12" cy="12" r="2"/></svg>
                 </span>
             </div>
             <div class="mt-2 text-2xl font-extrabold text-emerald-600">
                 +Rp {{ number_format($filteredIncome, 0, ',', '.') }}
             </div>
-            <p class="text-xs text-gray-500 mt-1">Total akumulasi dari {{ $transactions->total() }} kriteria transaksi</p>
+            <p class="text-xs text-gray-600 mt-1">Total akumulasi dari {{ $transactions->total() }} kriteria transaksi</p>
         </div>
 
         <!-- Akumulasi Pengeluaran Filtered -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pengeluaran (Hasil Filter)</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Pengeluaran (Hasil Filter)</span>
                 <span class="inline-flex justify-center items-center size-8 rounded-lg bg-rose-50 text-rose-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"/><path d="M18 12h.01"/><path d="M19 22v-6"/><path d="m22 19-3-3-3 3"/><path d="M6 12h.01"/><circle cx="12" cy="12" r="2"/></svg>                
                 </span>
@@ -46,38 +46,38 @@
             <div class="mt-2 text-2xl font-extrabold text-gray-900">
                 -Rp {{ number_format($filteredExpense, 0, ',', '.') }}
             </div>
-            <p class="text-xs text-gray-500 mt-1">Total pengeluaran tercatat</p>
+            <p class="text-xs text-gray-600 mt-1">Total pengeluaran tercatat</p>
         </div>
 
         <!-- Akumulasi Net Flow Filtered -->
-        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Selisih Net (Hasil Filter)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $filteredNet >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600' }}">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-600">Selisih Net (Hasil Filter)</span>
+                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $filteredNet >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-50 text-rose-600' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg>
                 </span>
             </div>
             <div class="mt-2 text-2xl font-extrabold {{ $filteredNet >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
                 {{ $filteredNet >= 0 ? '+' : '-' }}Rp {{ number_format(abs($filteredNet), 0, ',', '.') }}
             </div>
-            <p class="text-xs text-gray-500 mt-1">Surplus / Defisit hasil filter</p>
+            <p class="text-xs text-gray-600 mt-1">Surplus / Defisit hasil filter</p>
         </div>
     </div>
 
     <!-- FILTER BAR COMPREHENSIVE CARD (FILTER WAKTU HARI/BULAN/TAHUN & RENTANG TANGGAL) -->
-    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-4 shadow-sm">
         <form action="{{ route('transactions.index') }}" method="GET" class="space-y-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <!-- Search Text -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Cari Kata Kunci</label>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan, sumber, barang..." class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari keterangan, sumber, barang..." class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                 </div>
 
                 <!-- Filter Periode Waktu -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Periode Waktu Cepat</label>
-                    <select name="period" id="filter-period" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <select name="period" id="filter-period" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         <option value="">-- Semua Waktu --</option>
                         <option value="today" {{ request('period') === 'today' ? 'selected' : '' }}>Hari Ini</option>
                         <option value="this_week" {{ request('period') === 'this_week' ? 'selected' : '' }}>Minggu Ini</option>
@@ -90,19 +90,19 @@
                 <!-- Filter Tanggal Mulai -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Dari Tanggal</label>
-                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                 </div>
 
                 <!-- Filter Tanggal Selesai -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Sampai Tanggal</label>
-                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                 </div>
 
                 <!-- Filter Rekening -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Sumber Rekening</label>
-                    <select name="account_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <select name="account_id" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         <option value="">-- Semua Rekening --</option>
                         @foreach($accounts as $acc)
                             <option value="{{ $acc->id }}" {{ request('account_id') == $acc->id ? 'selected' : '' }}>{{ $acc->name }}</option>
@@ -111,9 +111,9 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-gray-100">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-[#C8E6C9]">
                 <div>
-                    <select name="type" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <select name="type" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         <option value="">-- Semua Tipe (Pemasukan / Pengeluaran) --</option>
                         <option value="income" {{ request('type') === 'income' ? 'selected' : '' }}>Pemasukan</option>
                         <option value="expense" {{ request('type') === 'expense' ? 'selected' : '' }}>Pengeluaran</option>
@@ -121,7 +121,7 @@
                 </div>
 
                 <div>
-                    <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-xs focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                    <select name="category_id" class="py-2 px-3 block w-full bg-gray-50 border border-[#C8E6C9] rounded-lg text-xs focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         <option value="">-- Semua Kategori --</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->icon_or_default }} {{ $cat->name }}</option>
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="flex gap-2">
-                    <button type="submit" class="w-full py-2 px-3 bg-white border border-gray-200 text-gray-800 rounded-lg text-xs font-semibold hover:bg-gray-50 hover:border-gray-300 shadow-sm transition">
+                    <button type="submit" class="w-full py-2 px-3 bg-white border border-[#C8E6C9] text-gray-800 rounded-lg text-xs font-semibold hover:bg-white/80 shadow-sm transition">
                         Terapkan Filter
                     </button>
                     @if(request()->hasAny(['search', 'type', 'category_id', 'account_id', 'period', 'start_date', 'end_date']))
@@ -143,11 +143,11 @@
         </form>
     </div>
 
-    <!-- TRANSACTIONS TABLE CARD (30% WHITE STRUCTURE + SHADOW-SM) -->
-    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+    <!-- TRANSACTIONS TABLE CARD (30% LIGHT GREEN STRUCTURE #E8F5E9 + SHADOW-SM) -->
+    <div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+            <table class="min-w-full divide-y divide-[#C8E6C9]">
+                <thead class="bg-[#DCEDC8]/60 border-b border-[#C8E6C9]">
                     <tr class="text-xs font-semibold text-gray-500 uppercase">
                         <th class="py-3 px-4 text-start">Tanggal</th>
                         <th class="py-3 px-4 text-start">Rekening</th>
@@ -158,9 +158,9 @@
                         <th class="py-3 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200 text-sm">
+                <tbody class="divide-y divide-[#C8E6C9] bg-white/90 text-sm">
                     @forelse($transactions as $tx)
-                    <tr class="hover:bg-gray-50/80 transition">
+                    <tr class="hover:bg-[#E8F5E9]/60 transition">
                         <td class="py-3 px-4 whitespace-nowrap text-gray-600 text-xs sm:text-sm font-medium">
                             {{ $tx->date->format('d M Y') }}
                         </td>
@@ -192,7 +192,7 @@
                             <div class="font-medium">{{ $tx->description ?? '-' }}</div>
                             @if($tx->items->count() > 0)
                             <div class="mt-1">
-                                <button type="button" class="inline-flex items-center gap-x-1 py-0.5 px-2 rounded-md bg-orange-50 text-orange-700 border border-orange-200 text-[11px] font-semibold hover:bg-orange-100 transition" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">
+                                <button type="button" class="inline-flex items-center gap-x-1 py-0.5 px-2 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold hover:bg-emerald-100 transition" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">
                                     <svg class="size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M16 8h-6"/><path d="M16 12h-6"/><path d="M16 16h-6"/></svg>
                                     Lihat Struk ({{ $tx->items->count() }} barang)
                                 </button>
@@ -204,7 +204,7 @@
                         </td>
                         <td class="py-3 px-4 text-center whitespace-nowrap">
                             <div class="flex items-center justify-center gap-x-2">
-                                <button type="button" class="text-xs font-semibold text-orange-600 hover:text-orange-800 py-1 px-2 rounded-lg hover:bg-orange-50 transition" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
+                                <button type="button" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 py-1 px-2 rounded-lg hover:bg-emerald-50 transition" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
                                     Ubah
                                 </button>
                                 <form action="{{ route('transactions.destroy', $tx->id) }}" method="POST" onsubmit="return confirm('Hapus transaksi ini?');" class="inline-block">
@@ -412,7 +412,7 @@
                     <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
                         Batal
                     </button>
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">
+                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">
                         Simpan Perubahan
                     </button>
                 </div>

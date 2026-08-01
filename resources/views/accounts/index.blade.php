@@ -9,37 +9,37 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Rekening & Dompet</h1>
-            <p class="text-xs sm:text-sm text-gray-500">Atur rekening bank, e-wallet, dan sumber dana tunai Anda</p>
+            <p class="text-xs sm:text-sm text-gray-600">Atur rekening bank, e-wallet, dan sumber dana tunai Anda</p>
         </div>
         <div class="flex items-center gap-x-2">
-            <a href="{{ route('transfers.index') }}" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100 shadow-sm transition">
+            <a href="{{ route('transfers.index') }}" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 shadow-sm transition">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
                 Transfer / Top Up
             </a>
-            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 shadow-sm transition" data-hs-overlay="#hs-add-account-modal">
+            <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] shadow-sm transition" data-hs-overlay="#hs-add-account-modal">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Tambah Rekening
             </button>
         </div>
     </div>
 
-    <!-- ACCOUNTS GRID (PURE WHITE CARDS + SHADOW-SM ON CREME BG) -->
+    <!-- ACCOUNTS GRID (30% LIGHT GREEN CONTAINER #E8F5E9 + SHADOW-SM) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($accounts as $acc)
-        <div class="flex flex-col bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col bg-[#E8F5E9] border border-[#C8E6C9] rounded-xl p-5 shadow-sm">
             <div class="flex items-start justify-between">
                 <div class="flex items-center gap-x-3">
-                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-orange-50 text-orange-600">
+                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-emerald-100 text-emerald-700">
                         <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                     </span>
                     <div>
                         <h3 class="font-bold text-gray-900">{{ $acc->name }}</h3>
-                        <p class="text-xs text-gray-500">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
+                        <p class="text-xs text-gray-600">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-x-1">
-                    <button type="button" class="p-1.5 text-orange-600 hover:text-orange-800 rounded-lg hover:bg-orange-50 transition" data-hs-overlay="#hs-edit-account-modal-{{ $acc->id }}" title="Edit Rekening">
+                    <button type="button" class="p-1.5 text-emerald-700 hover:text-emerald-900 rounded-lg hover:bg-emerald-50 transition" data-hs-overlay="#hs-edit-account-modal-{{ $acc->id }}" title="Edit Rekening">
                         <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
                     </button>
 
@@ -53,11 +53,11 @@
                 </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-gray-200 flex justify-between items-baseline">
-                <span class="text-xs text-gray-500 font-medium">Saldo Rekening:</span>
+            <div class="mt-4 pt-3 border-t border-[#C8E6C9] flex justify-between items-baseline">
+                <span class="text-xs text-gray-600 font-medium">Saldo Rekening:</span>
                 <span class="text-lg font-extrabold text-gray-900">Rp {{ number_format($acc->balance, 0, ',', '.') }}</span>
             </div>
-            <p class="text-[11px] text-gray-400 text-end mt-0.5">Saldo awal: Rp {{ number_format($acc->initial_balance, 0, ',', '.') }}</p>
+            <p class="text-[11px] text-gray-500 text-end mt-0.5">Saldo awal: Rp {{ number_format($acc->initial_balance, 0, ',', '.') }}</p>
         </div>
 
         <!-- MODAL EDIT REKENING -->
@@ -77,23 +77,23 @@
                         <div class="p-4 space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
-                                <input type="text" name="name" value="{{ $acc->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="name" value="{{ $acc->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Nomor Rekening / Akun (Opsional)</label>
-                                <input type="text" name="account_number" value="{{ $acc->account_number }}" placeholder="Misal: 1234567890" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="account_number" value="{{ $acc->account_number }}" placeholder="Misal: 1234567890" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Saldo Awal (Rp)</label>
-                                <input type="text" name="initial_balance" value="{{ number_format($acc->initial_balance, 0, '', '') }}" data-currency-input required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                                <input type="text" name="initial_balance" value="{{ number_format($acc->initial_balance, 0, '', '') }}" data-currency-input required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                             </div>
                         </div>
 
                         <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
                             <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-edit-account-modal-{{ $acc->id }}">Batal</button>
-                            <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">Simpan Perubahan</button>
+                            <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Perubahan</button>
                         </div>
                     </form>
                 </div>
@@ -118,23 +118,23 @@
                     <div class="p-4 space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
-                            <input type="text" name="name" required placeholder="Misal: Bank Mandiri / OVO" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="name" required placeholder="Misal: Bank Mandiri / OVO" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Nomor Rekening / Akun (Opsional)</label>
-                            <input type="text" name="account_number" placeholder="Misal: 9876543210" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="account_number" placeholder="Misal: 9876543210" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Saldo Awal (Rp)</label>
-                            <input type="text" name="initial_balance" value="0" data-currency-input required placeholder="0" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                            <input type="text" name="initial_balance" value="0" data-currency-input required placeholder="0" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
                         </div>
                     </div>
 
                     <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
                         <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-add-account-modal">Batal</button>
-                        <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">Simpan Rekening</button>
+                        <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Rekening</button>
                     </div>
                 </form>
             </div>

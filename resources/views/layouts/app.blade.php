@@ -27,24 +27,24 @@
                     </svg>
                 </button>
                 
-                <!-- Brand Logo with 10% Warm Orange Accent -->
+                <!-- Brand Logo with 10% Interactive Accent #66BB6A -->
                 <a class="flex items-center gap-x-2.5 font-bold text-xl text-gray-900" href="{{ route('dashboard') }}">
-                    <div class="w-9 h-9 rounded-xl bg-orange-500 text-white flex items-center justify-center font-extrabold text-lg shadow-sm">
+                    <div class="w-9 h-9 rounded-xl bg-[#66BB6A] text-white flex items-center justify-center font-extrabold text-lg shadow-sm">
                         F
                     </div>
                     <span class="tracking-tight">Fibud</span>
                 </a>
 
                 <div class="lg:hidden">
-                    <button type="button" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm" data-hs-overlay="#hs-add-transaction-modal">
+                    <button type="button" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm" data-hs-overlay="#hs-add-transaction-modal">
                         + Transaksi
                     </button>
                 </div>
             </div>
 
-            <!-- Header Quick Actions (10% Warm Orange Accent) -->
+            <!-- Header Quick Actions (10% Green Accent #66BB6A) -->
             <div class="hidden lg:flex items-center gap-x-3">
-                <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600 transition shadow-sm" data-hs-overlay="#hs-add-transaction-modal">
+                <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] focus:outline-none transition shadow-sm" data-hs-overlay="#hs-add-transaction-modal">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                     Catat Transaksi
                 </button>
@@ -57,54 +57,54 @@
     <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row gap-6 py-6">
 
-            <!-- Sidebar (30% White Structure + Shadow-SM) -->
-            <div id="application-sidebar" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 start-0 bottom-0 z-60 w-64 bg-white border-e border-gray-200 overflow-y-auto lg:block lg:static lg:translate-x-0 lg:z-10 lg:w-64 lg:shrink-0 lg:rounded-xl lg:border p-4 shadow-sm transition-all duration-300">
-                <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 lg:hidden">
+            <!-- Sidebar (30% Green Structure Container #E8F5E9 + Shadow-SM) -->
+            <div id="application-sidebar" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 start-0 bottom-0 z-60 w-64 bg-[#E8F5E9] border-e border-[#C8E6C9] overflow-y-auto lg:block lg:static lg:translate-x-0 lg:z-10 lg:w-64 lg:shrink-0 lg:rounded-xl lg:border lg:border-[#C8E6C9] p-4 shadow-sm transition-all duration-300">
+                <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#C8E6C9] lg:hidden">
                     <span class="font-semibold text-gray-900">Menu Utama</span>
-                    <button type="button" class="p-1 inline-flex justify-center items-center rounded-lg text-gray-500 hover:bg-gray-100" data-hs-overlay="#application-sidebar">
+                    <button type="button" class="p-1 inline-flex justify-center items-center rounded-lg text-gray-500 hover:bg-white/80" data-hs-overlay="#application-sidebar">
                         <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                     </button>
                 </div>
 
                 <nav class="space-y-1.5 w-full flex flex-col">
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('dashboard') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('dashboard') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                         Dashboard
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('transactions.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('transactions.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('transactions.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('transactions.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/></svg>
                         Transaksi
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('transfers.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('transfers.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('transfers.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('transfers.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
                         Transfer & Top Up
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('reports.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('reports.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-4"/><path d="M8 18v-2"/><path d="M16 18v-6"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('reports.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('reports.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-4"/><path d="M8 18v-2"/><path d="M16 18v-6"/></svg>
                         Laporan Keuangan
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('budgets.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('budgets.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M18 12h.01"/><path d="M14 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('budgets.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('budgets.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M18 12h.01"/><path d="M14 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/></svg>
                         Batas Anggaran
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('accounts.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('accounts.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('accounts.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('accounts.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                         Rekening & Dompet
                     </a>
 
-                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('categories.*') ? 'bg-orange-50 text-orange-600 font-semibold border-s-4 border-orange-500' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" href="{{ route('categories.index') }}">
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/></svg>
+                    <a class="flex items-center gap-x-3 py-2.5 px-3 rounded-lg text-sm font-medium transition {{ request()->routeIs('categories.*') ? 'bg-white text-emerald-800 font-semibold border-s-4 border-[#66BB6A] shadow-2xs' : 'text-gray-700 hover:bg-white/80 hover:text-gray-900' }}" href="{{ route('categories.index') }}">
+                        <svg class="shrink-0 size-4 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/></svg>
                         Kelola Kategori
                     </a>
                 </nav>
 
-                <div class="mt-8 pt-4 border-t border-gray-200">
-                    <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <div class="mt-8 pt-4 border-t border-[#C8E6C9]">
+                    <div class="p-3 bg-white/80 rounded-lg border border-[#C8E6C9]">
                         <p class="text-xs font-semibold text-gray-800">Mode Lokal</p>
                         <p class="text-xs text-gray-500 mt-0.5">Single user tanpa autentikasi.</p>
                     </div>
@@ -227,7 +227,7 @@
                                     <h4 class="text-xs font-semibold text-gray-900 uppercase tracking-wider">Rincian Struk Barang (Opsional)</h4>
                                     <p class="text-[11px] text-gray-500">Isi jika ingin mencatat rincian per barang, harga satuan, dan diskon.</p>
                                 </div>
-                                <button type="button" id="btn-add-item" class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100 transition">
+                                <button type="button" id="btn-add-item" class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition">
                                     + Tambah Barang
                                 </button>
                             </div>
@@ -243,7 +243,7 @@
                         <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-add-transaction-modal">
                             Batal
                         </button>
-                        <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm">
+                        <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">
                             Simpan Transaksi
                         </button>
                     </div>

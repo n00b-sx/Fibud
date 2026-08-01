@@ -10,7 +10,20 @@
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-fibud-bg: #F3F4F6;
+    --color-fibud-card: #E8F5E9;
+    --color-fibud-card-border: #C8E6C9;
+    --color-fibud-accent: #66BB6A;
+    --color-fibud-accent-hover: #52A456;
 }
+
+/* Custom Fibud Palette Helper Utilities */
+.bg-fibud-bg { background-color: #F3F4F6; }
+.bg-fibud-card { background-color: #E8F5E9; }
+.border-fibud-card { border-color: #C8E6C9; }
+.bg-fibud-accent { background-color: #66BB6A; }
+.hover\:bg-fibud-accent-hover:hover { background-color: #52A456; }
 
 /* Global Form Inputs Light-Gray Background (#f9fafb) & Contrast Border (#d1d5db) */
 input[type="text"],
@@ -22,7 +35,7 @@ input[type="password"],
 select,
 textarea {
     background-color: #f9fafb;
-    border-color: #d1d5db;
+    border-color: #c8e6c9;
     color: #111827;
 }
 
@@ -35,7 +48,7 @@ input[type="password"]:focus,
 select:focus,
 textarea:focus {
     background-color: #ffffff;
-    border-color: #f97316;
+    border-color: #66bb6a;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 0 0 2px rgba(102, 187, 106, 0.25);
 }
