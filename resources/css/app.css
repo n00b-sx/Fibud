@@ -7,9 +7,15 @@
 @source '../**/*.js';
 @source '../../node_modules/preline/dist/*.js';
 
+@font-face {
+    font-family: 'OpenMoji';
+    src: url('https://cdn.jsdelivr.net/npm/openmoji@15.1.0/font/OpenMoji-Color.woff2') format('woff2');
+    font-display: swap;
+}
+
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', 'OpenMoji', 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 
     --color-fibud-bg: #F8FAFC;
     --color-fibud-card: #E8F5E9;

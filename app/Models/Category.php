@@ -21,6 +21,16 @@ class Category extends Model
         return $this->type === 'income' ? '💵' : '💸';
     }
 
+    public function getOpenmojiUrlAttribute(): string
+    {
+        return \App\Helpers\OpenMojiHelper::getUrl($this->icon_or_default);
+    }
+
+    public function getOpenmojiImgAttribute(): string
+    {
+        return \App\Helpers\OpenMojiHelper::render($this->icon_or_default, 'size-6 inline-block');
+    }
+
     public function getFormattedNameAttribute(): string
     {
         return $this->icon_or_default . ' ' . $this->name;

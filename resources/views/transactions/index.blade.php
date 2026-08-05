@@ -169,8 +169,8 @@
                         </td>
                         <!-- COLUMN: EMOJI BADGE ONLY WITH HOVER TOOLTIP -->
                         <td class="py-3 px-4 text-center whitespace-nowrap">
-                            <span class="inline-flex items-center justify-center size-8 rounded-full text-base shadow-2xs transition hover:scale-110 cursor-help {{ $tx->category->type === 'income' ? 'bg-emerald-50 border border-emerald-200' : 'bg-gray-100 border border-gray-200' }}" title="{{ $tx->category->name }} ({{ $tx->category->type === 'income' ? 'Pemasukan' : 'Pengeluaran' }})">
-                                {{ $tx->category->icon_or_default }}
+                            <span class="inline-flex items-center justify-center text-base transition hover:scale-110 cursor-help" title="{{ $tx->category->name }} ({{ $tx->category->type === 'income' ? 'Pemasukan' : 'Pengeluaran' }})">
+                                {!! \App\Helpers\OpenMojiHelper::render($tx->category->icon_or_default, 'size-6') !!}
                             </span>
                         </td>
                         <!-- COLUMN: SUMBER / TUJUAN DANA -->

@@ -181,11 +181,17 @@
                 @forelse($recentTransactions as $tx)
                 <div class="py-3 flex items-center justify-between">
                     <div class="flex items-center gap-x-3">
-                        <div class="size-9 rounded-xl flex items-center justify-center {{ $tx->category->type === 'income' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-gray-50 text-gray-600 border border-gray-200' }}">
+                        <div class="size-9 rounded-xl flex items-center justify-center {{ $tx->category->type === 'income' ? 'bg-gray-50 text-emerald-600 border border-gray-200' : 'bg-gray-50 text-[#F43F5E] border border-gray-200' }}">
                             @if($tx->category->type === 'income')
-                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M20.24 3.75a.75.75 0 0 1-.75.75H8.989v13.939l2.47-2.47a.75.75 0 1 1 1.06 1.061l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.751-3.75a.75.75 0 1 1 1.06-1.06l2.47 2.469V3.75a.75.75 0 0 1 .75-.75H19.49a.75.75 0 0 1 .75.75Z" clip-rule="evenodd" />
+</svg>
+
                             @else
-                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M20.24 20.249a.75.75 0 0 0-.75-.75H8.989V5.56l2.47 2.47a.75.75 0 0 0 1.06-1.061l-3.75-3.75a.75.75 0 0 0-1.06 0l-3.75 3.75a.75.75 0 1 0 1.06 1.06l2.47-2.469V20.25c0 .414.335.75.75.75h11.25a.75.75 0 0 0 .75-.75Z" clip-rule="evenodd" />
+</svg>
+
                             @endif
                         </div>
                         <div>
@@ -195,7 +201,10 @@
                                 <span>•</span>
                                 <span>{{ $tx->account->name ?? 'Default' }}</span>
                                 <span>•</span>
-                                <span class="font-medium text-gray-800">{{ $tx->category->icon_or_default }} {{ $tx->category->name }}</span>
+                                <span class="font-medium text-gray-800 flex items-center gap-x-1">
+                                    {!! \App\Helpers\OpenMojiHelper::render($tx->category->icon_or_default, 'size-4 inline-block') !!}
+                                    <span>{{ $tx->category->name }}</span>
+                                </span>
                             </div>
                         </div>
                     </div>

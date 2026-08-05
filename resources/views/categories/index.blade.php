@@ -35,8 +35,8 @@
                     @forelse($categories as $cat)
                     <tr class="hover:bg-gray-50/60 transition">
                         <td class="py-3 px-4 font-bold text-gray-900 flex items-center gap-x-2">
-                            <span class="inline-flex items-center justify-center size-8 rounded-full bg-gray-100 border border-gray-200 text-base">
-                                {{ $cat->icon_or_default }}
+                            <span class="inline-flex items-center justify-center size-8 rounded-full bg-gray-100 border border-gray-200 text-base overflow-hidden">
+                                {!! \App\Helpers\OpenMojiHelper::render($cat->icon_or_default, 'size-5') !!}
                             </span>
                             <span>{{ $cat->name }}</span>
                         </td>
