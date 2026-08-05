@@ -11,8 +11,8 @@
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Saldo (Semua Rekening)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-emerald-50 text-emerald-600">
-                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B3.svg" alt="Total Saldo" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
@@ -25,8 +25,8 @@
         <div class="bg-[#10B981] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pemasukan Bulan Ini</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
-                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/><path d="M11 8h7"/><path d="M11 12h4"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B5.svg" alt="Pemasukan" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
@@ -39,8 +39,8 @@
         <div class="bg-[#F43F5E] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pengeluaran Bulan Ini</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
-                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/><path d="M11 16h7"/><path d="M11 20h4"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B8.svg" alt="Pengeluaran" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">
@@ -53,8 +53,8 @@
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $netFlow > 0 ? 'bg-emerald-100 text-emerald-700' : ($netFlow < 0 ? 'bg-rose-100 text-rose-600' : 'bg-gray-100 text-gray-700') }}">
-                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl {{ $netFlow > 0 ? 'bg-emerald-50 border border-emerald-100' : ($netFlow < 0 ? 'bg-rose-50 border border-rose-100' : 'bg-gray-100 border border-gray-200') }}">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/2696.svg" alt="Arus Kas Net" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 flex items-baseline gap-x-2">

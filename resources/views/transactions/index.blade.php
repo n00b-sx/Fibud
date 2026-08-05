@@ -25,8 +25,8 @@
         <div class="bg-[#10B981] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pemasukan (Hasil Filter)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"/><path d="m16 19 3 3 3-3"/><path d="M18 12h.01"/><path d="M19 16v6"/><path d="M6 12h.01"/><circle cx="12" cy="12" r="2"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B5.svg" alt="Pemasukan" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 text-2xl font-extrabold text-white">
@@ -39,8 +39,8 @@
         <div class="bg-[#F43F5E] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pengeluaran (Hasil Filter)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg bg-white/20 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"/><path d="M18 12h.01"/><path d="M19 22v-6"/><path d="m22 19-3-3-3 3"/><path d="M6 12h.01"/><circle cx="12" cy="12" r="2"/></svg>                
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B8.svg" alt="Pengeluaran" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 text-2xl font-extrabold text-white">
@@ -53,8 +53,8 @@
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
                 <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Selisih Net (Hasil Filter)</span>
-                <span class="inline-flex justify-center items-center size-8 rounded-lg {{ $filteredNet > 0 ? 'bg-emerald-100 text-emerald-700' : ($filteredNet < 0 ? 'bg-rose-100 text-rose-600' : 'bg-gray-100 text-gray-700') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl {{ $filteredNet > 0 ? 'bg-emerald-50 border border-emerald-100' : ($filteredNet < 0 ? 'bg-rose-50 border border-rose-100' : 'bg-gray-100 border border-gray-200') }}">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/2696.svg" alt="Selisih Net" class="size-6 shrink-0" />
                 </span>
             </div>
             <div class="mt-2 text-2xl font-extrabold {{ $filteredNet > 0 ? 'text-[#10B981]' : ($filteredNet < 0 ? 'text-[#F43F5E]' : 'text-gray-900') }}">

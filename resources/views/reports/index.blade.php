@@ -91,21 +91,36 @@
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <!-- Total Pemasukan -->
         <div class="bg-[#10B981] rounded-xl p-4 shadow-md border-none text-white">
-            <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Total Pemasukan</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Total Pemasukan</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B5.svg" alt="Pemasukan" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold text-white">+Rp {{ number_format($totalIncome, 0, ',', '.') }}</div>
             <p class="text-xs text-white/90 mt-1">Uang masuk periode laporan</p>
         </div>
 
         <!-- Total Pengeluaran -->
         <div class="bg-[#F43F5E] rounded-xl p-4 shadow-md border-none text-white">
-            <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Total Pengeluaran</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Total Pengeluaran</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B8.svg" alt="Pengeluaran" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold text-white">-Rp {{ number_format($totalExpense, 0, ',', '.') }}</div>
             <p class="text-xs text-white/90 mt-1">Total pengeluaran & belanja</p>
         </div>
 
         <!-- Arus Kas Bersih -->
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl {{ $netFlow > 0 ? 'bg-emerald-50 border border-emerald-100' : ($netFlow < 0 ? 'bg-rose-50 border border-rose-100' : 'bg-gray-100 border border-gray-200') }}">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/2696.svg" alt="Arus Kas Net" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold {{ $netFlow > 0 ? 'text-[#10B981]' : ($netFlow < 0 ? 'text-[#F43F5E]' : 'text-gray-900') }}">
                 {{ $netFlow > 0 ? '+' : ($netFlow < 0 ? '-' : '') }}Rp {{ number_format(abs($netFlow), 0, ',', '.') }}
             </div>
@@ -114,7 +129,12 @@
 
         <!-- Jumlah Transaksi -->
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Jumlah Transaksi</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Jumlah Transaksi</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4DD.svg" alt="Jumlah Transaksi" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold text-gray-900">{{ $transactions->count() }} Transaksi</div>
             <p class="text-xs text-gray-500 mt-1">Sesuai kriteria filter</p>
         </div>

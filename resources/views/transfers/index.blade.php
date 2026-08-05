@@ -22,13 +22,23 @@
     <!-- QUICK STATS CARDS -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Mutasi Recorded</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Mutasi Recorded</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F504.svg" alt="Mutasi" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold text-gray-900">{{ $transfers->total() }} Kali</div>
             <p class="text-xs text-gray-500 mt-1">Riwayat pemindahan dana</p>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Jumlah Rekening Aktif</span>
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Jumlah Rekening Aktif</span>
+                <span class="inline-flex justify-center items-center size-9 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F3E6.svg" alt="Rekening" class="size-6 shrink-0" />
+                </span>
+            </div>
             <div class="mt-2 text-2xl font-extrabold text-[#10B981]">{{ $accounts->count() }} Sumber Dana</div>
             <p class="text-xs text-gray-500 mt-1">Bank, E-Wallet & Tunai</p>
         </div>
@@ -38,8 +48,9 @@
                 <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Butuh Rekening Baru?</span>
                 <p class="text-xs text-gray-500 mt-1">Tambah dompet atau bank baru</p>
             </div>
-            <a href="{{ route('accounts.index') }}" class="py-1.5 px-3 text-xs font-bold rounded-lg bg-gray-50 border border-gray-200 text-gray-900 hover:bg-gray-100 transition">
-                Kelola Rekening →
+            <a href="{{ route('accounts.index') }}" class="py-1.5 px-3 text-xs font-bold rounded-lg bg-gray-50 border border-gray-200 text-gray-900 hover:bg-gray-100 transition flex items-center gap-x-1">
+                <span>Kelola Rekening</span>
+                <span>→</span>
             </a>
         </div>
     </div>
