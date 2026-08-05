@@ -243,13 +243,13 @@
 @if($tx->items->count() > 0)
 <div id="hs-receipt-modal-{{ $tx->id }}" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-y-auto overflow-x-hidden pointer-events-none" tabindex="-1" role="dialog">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-2xl sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-        <div class="w-full flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm pointer-events-auto">
-            <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
+        <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
+            <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
                 <div>
                     <h3 class="font-bold text-gray-900 text-base">Rincian Struk Belanja</h3>
                     <p class="text-xs text-gray-500">{{ $tx->description ?? 'Transaksi Belanja' }} • {{ $tx->date->format('d M Y') }}</p>
                 </div>
-                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">
+                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
@@ -285,8 +285,8 @@
                 </table>
             </div>
 
-            <div class="flex justify-end py-3 px-4 border-t border-gray-200">
-                <button type="button" class="py-2 px-3 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">Tutup Struk</button>
+            <div class="flex justify-end py-3 px-4 modal-glass-footer">
+                <button type="button" class="py-2 px-3 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50" data-hs-overlay="#hs-receipt-modal-{{ $tx->id }}">Tutup Struk</button>
             </div>
         </div>
     </div>
@@ -296,12 +296,12 @@
 <!-- 2. MODAL EDIT TRANSAKSI -->
 <div id="hs-edit-transaction-modal-{{ $tx->id }}" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-y-auto overflow-x-hidden pointer-events-none" tabindex="-1" role="dialog">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-2xl sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-        <div class="w-full flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm pointer-events-auto">
-            <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
-                <h3 class="font-semibold text-gray-900">
+        <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
+            <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
+                <h3 class="font-bold text-gray-900">
                     Ubah Transaksi
                 </h3>
-                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
+                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
@@ -408,7 +408,7 @@
 
                 </div>
 
-                <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t border-gray-200">
+                <div class="flex justify-end items-center gap-x-2 py-3 px-4 modal-glass-footer">
                     <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
                         Batal
                     </button>

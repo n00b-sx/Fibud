@@ -58,3 +58,28 @@ textarea:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(102, 187, 106, 0.25);
 }
+
+/* Glassmorphism Modal Styles */
+.hs-overlay-backdrop {
+    background-color: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.modal-glass {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+.modal-glass-header {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.6) !important;
+}
+
+.modal-glass-footer {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border-top: 1px solid rgba(229, 231, 235, 0.6) !important;
+}

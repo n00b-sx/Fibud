@@ -81,10 +81,10 @@
 <!-- MODAL TAMBAH KATEGORI BARU -->
 <div id="hs-add-category-modal" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-y-auto overflow-x-hidden pointer-events-none" tabindex="-1" role="dialog">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-md sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-        <div class="w-full flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm pointer-events-auto">
-            <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
+        <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
+            <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
                 <h3 class="font-bold text-gray-900">Tambah Kategori Baru</h3>
-                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200" data-hs-overlay="#hs-add-category-modal">
+                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-add-category-modal">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
+                <div class="flex justify-end gap-x-2 py-3 px-4 modal-glass-footer">
                     <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-add-category-modal">Batal</button>
                     <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Kategori</button>
                 </div>
@@ -125,10 +125,10 @@
 @foreach($categories as $cat)
 <div id="hs-edit-category-modal-{{ $cat->id }}" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-y-auto overflow-x-hidden pointer-events-none" tabindex="-1" role="dialog">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-md sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-        <div class="w-full flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm pointer-events-auto">
-            <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
+        <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
+            <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
                 <h3 class="font-bold text-gray-900">Edit Kategori: {{ $cat->name }}</h3>
-                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">
+                <button type="button" class="size-8 inline-flex justify-center items-center rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-end gap-x-2 py-3 px-4 border-t border-gray-200">
+                <div class="flex justify-end gap-x-2 py-3 px-4 modal-glass-footer">
                     <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50" data-hs-overlay="#hs-edit-category-modal-{{ $cat->id }}">Batal</button>
                     <button type="submit" class="py-2 px-3 text-sm font-medium rounded-lg bg-[#66BB6A] text-white hover:bg-[#52A456] transition shadow-sm">Simpan Perubahan</button>
                 </div>
