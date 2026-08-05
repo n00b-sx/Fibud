@@ -27,23 +27,23 @@ window.addEventListener('load', () => {
  * JS Glassmorphism Controller for Preline Overlay Modals & Backdrops
  */
 function applyGlassmorphismBackdrop() {
-    // Select any Preline-generated backdrop element or overlay wrapper
+    // Outer page overlay backdrop: Clear translucent tint WITHOUT pre-blurring page elements
     const backdropElements = document.querySelectorAll(
         '[data-hs-overlay-backdrop-template], .hs-overlay-backdrop, div[class*="bg-gray-900"][class*="fixed"]'
     );
 
     backdropElements.forEach(el => {
-        el.style.setProperty('backdrop-filter', 'blur(16px) saturate(180%)', 'important');
-        el.style.setProperty('-webkit-backdrop-filter', 'blur(16px) saturate(180%)', 'important');
-        el.style.setProperty('background-color', 'rgba(15, 23, 42, 0.45)', 'important');
+        el.style.setProperty('backdrop-filter', 'none', 'important');
+        el.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+        el.style.setProperty('background-color', 'rgba(15, 23, 42, 0.20)', 'important');
     });
 
-    // Select all modal glass dialog containers
+    // ONLY the modal dialog card box gets the heavy Frosted Glass Blur effect!
     const modalGlassElements = document.querySelectorAll('.modal-glass');
     modalGlassElements.forEach(el => {
         el.style.setProperty('backdrop-filter', 'blur(30px) saturate(200%)', 'important');
         el.style.setProperty('-webkit-backdrop-filter', 'blur(30px) saturate(200%)', 'important');
-        el.style.setProperty('background-color', 'rgba(255, 255, 255, 0.75)', 'important');
+        el.style.setProperty('background-color', 'rgba(255, 255, 255, 0.65)', 'important');
     });
 }
 

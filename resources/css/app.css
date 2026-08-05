@@ -63,18 +63,19 @@ textarea:focus {
    GLASSMORPHISM MODAL DESIGN SYSTEM
    ========================================================================== */
 
-/* Outer Overlay Backdrop: Dynamically blurred by JS & CSS */
+/* Outer Overlay Backdrop: Clear translucent tint WITHOUT pre-blurring outer page elements */
 .hs-overlay-backdrop,
 div[data-hs-overlay-backdrop-template],
-div[class*="bg-gray-900"][class*="fixed"] {
-    background-color: rgba(15, 23, 42, 0.45) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+div[class*="bg-gray-900"][class*="fixed"],
+.hs-overlay:not(#application-sidebar) {
+    background-color: rgba(15, 23, 42, 0.20) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
-/* Modal Dialog Box: Ultra-Rich Frosted Glass Box */
+/* Modal Dialog Box: ONLY the modal card box gets the Frosted Glass Blur effect! */
 .modal-glass {
-    background: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
     backdrop-filter: blur(32px) saturate(220%) !important;
     -webkit-backdrop-filter: blur(32px) saturate(220%) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
