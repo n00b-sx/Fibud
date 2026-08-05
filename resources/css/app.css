@@ -59,27 +59,34 @@ textarea:focus {
     box-shadow: 0 0 0 2px rgba(102, 187, 106, 0.25);
 }
 
-/* Glassmorphism Modal Styles */
-.hs-overlay-backdrop {
-    background-color: rgba(15, 23, 42, 0.45) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+/* Glassmorphism Modal Styles (Rich Frosted Glass Effect) */
+.hs-overlay-backdrop,
+.hs-overlay:not(#application-sidebar) {
+    background-color: rgba(15, 23, 42, 0.25) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .modal-glass {
-    background-color: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.68) !important;
+    backdrop-filter: blur(36px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(36px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.8),
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.4) !important;
 }
 
 .modal-glass-header {
-    background-color: rgba(255, 255, 255, 0.5) !important;
-    border-bottom: 1px solid rgba(229, 231, 235, 0.6) !important;
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5) !important;
 }
 
 .modal-glass-footer {
-    background-color: rgba(255, 255, 255, 0.5) !important;
-    border-top: 1px solid rgba(229, 231, 235, 0.6) !important;
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 1px solid rgba(229, 231, 235, 0.5) !important;
 }
