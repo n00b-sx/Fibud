@@ -22,14 +22,18 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($budgetsData as $item)
         <div class="flex flex-col bg-white rounded-xl p-5 shadow-md border-none">
-            <div class="flex items-start justify-between">
-                <div>
-                    <h3 class="font-bold text-gray-900 text-base">{{ $item['category_name'] }}</h3>
-                    <span class="text-xs text-gray-500">Bulan {{ \Carbon\Carbon::createFromFormat('Y-m', $selectedMonth)->isoFormat('MMMM Y') }}</span>
+            <div class="flex items-start justify-between gap-2">
+                <div class="flex items-center gap-x-2.5">
+                    <span class="inline-flex items-center justify-center size-9 rounded-full bg-emerald-50 border border-emerald-100 shrink-0">
+                        {!! \App\Helpers\OpenMojiHelper::render($item['category_icon'], 'size-5') !!}
+                    </span>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-base leading-snug">{{ $item['category_name'] }}</h3>
+                        <span class="text-[11px] text-gray-500">Bulan {{ \Carbon\Carbon::createFromFormat('Y-m', $selectedMonth)->isoFormat('MMMM Y') }}</span>
+                    </div>
                 </div>
-                <button type="button" class="py-1.5 px-3 inline-flex items-center gap-x-1.5 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition shadow-2xs" data-hs-overlay="#hs-set-budget-modal-{{ $item['category_id'] }}">
-                    <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
-                    {{ $item['has_budget'] ? 'Edit' : 'Set Budget' }}
+                <button type="button" class="p-2 inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 transition shadow-2xs shrink-0" data-hs-overlay="#hs-set-budget-modal-{{ $item['category_id'] }}" title="{{ $item['has_budget'] ? 'Ubah Budget' : 'Set Budget' }}">
+                    <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/270F.svg" alt="Edit" class="size-4 shrink-0" />
                 </button>
             </div>
 

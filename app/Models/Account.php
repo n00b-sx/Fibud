@@ -12,6 +12,7 @@ class Account extends Model
 
     protected $fillable = [
         'name',
+        'type',
         'account_number',
         'initial_balance',
     ];
@@ -19,6 +20,24 @@ class Account extends Model
     protected $casts = [
         'initial_balance' => 'decimal:2',
     ];
+
+    public function getTypeLabelAttribute(): string
+    {
+        return match($this->type) {
+            'ewallet' => 'E-Wallet',
+            'cash' => 'Tunai',
+            default => 'Bank',
+        };
+    }
+
+    public function getOpenmojiIconUrlAttribute(): string
+    {
+        return match($this->type) {
+            'ewallet' => 'https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4F1.svg', // Smartphone 📱
+            'cash' => 'https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B5.svg', // Banknote 💵
+            default => 'https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F3E6.svg', // Bank 🏦
+        };
+    }
 
     public function transactions(): HasMany
     {

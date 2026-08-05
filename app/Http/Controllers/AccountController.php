@@ -18,9 +18,14 @@ class AccountController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
+            'type' => 'nullable|string|in:bank,ewallet,cash',
             'account_number' => 'nullable|string|max:50',
             'initial_balance' => 'required|numeric|min:0',
         ]);
+
+        if (empty($validated['type'])) {
+            $validated['type'] = 'bank';
+        }
 
         Account::create($validated);
 
@@ -31,9 +36,14 @@ class AccountController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
+            'type' => 'nullable|string|in:bank,ewallet,cash',
             'account_number' => 'nullable|string|max:50',
             'initial_balance' => 'required|numeric|min:0',
         ]);
+
+        if (empty($validated['type'])) {
+            $validated['type'] = 'bank';
+        }
 
         $account->update($validated);
 

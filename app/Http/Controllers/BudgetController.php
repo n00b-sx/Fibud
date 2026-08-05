@@ -32,6 +32,7 @@ class BudgetController extends Controller
             return [
                 'category_id' => $category->id,
                 'category_name' => $category->name,
+                'category_icon' => $category->icon_or_default,
                 'amount_limit' => $amountLimit,
                 'spent' => $spent,
                 'remaining' => $remaining,

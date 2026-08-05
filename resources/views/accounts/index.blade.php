@@ -13,11 +13,11 @@
         </div>
         <div class="flex items-center gap-x-2">
             <a href="{{ route('transfers.index') }}" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 shadow-sm transition">
-                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F504.svg" alt="Transfer" class="size-4 shrink-0" />
                 Transfer / Top Up
             </a>
             <button type="button" class="py-2 px-3.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#66BB6A] text-white hover:bg-[#52A456] shadow-sm transition" data-hs-overlay="#hs-add-account-modal">
-                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/2795.svg" alt="Tambah" class="size-4 shrink-0" />
                 Tambah Rekening
             </button>
         </div>
@@ -29,25 +29,30 @@
         <div class="flex flex-col bg-white rounded-xl p-5 shadow-md border-none">
             <div class="flex items-start justify-between">
                 <div class="flex items-center gap-x-3">
-                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                        <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    <span class="inline-flex items-center justify-center size-10 rounded-xl bg-emerald-50 border border-emerald-100 shrink-0">
+                        <img src="{{ $acc->openmoji_icon_url }}" alt="{{ $acc->type_label }}" class="size-6 shrink-0" />
                     </span>
                     <div>
-                        <h3 class="font-bold text-gray-900">{{ $acc->name }}</h3>
-                        <p class="text-xs text-gray-500">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
+                        <div class="flex items-center gap-x-2">
+                            <h3 class="font-bold text-gray-900">{{ $acc->name }}</h3>
+                            <span class="inline-flex items-center py-0.5 px-2 rounded-full text-[10px] font-bold uppercase tracking-wider {{ $acc->type === 'ewallet' ? 'bg-purple-50 text-purple-700 border border-purple-200' : ($acc->type === 'cash' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200') }}">
+                                {{ $acc->type_label }}
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5">No. Rek / Akun: {{ $acc->account_number ?? '-' }}</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-x-1">
                     <button type="button" class="p-1.5 text-emerald-700 hover:text-emerald-900 rounded-lg hover:bg-emerald-50 transition" data-hs-overlay="#hs-edit-account-modal-{{ $acc->id }}" title="Edit Rekening">
-                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+                        <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/270F.svg" alt="Edit" class="size-4 shrink-0" />
                     </button>
 
                     <form action="{{ route('accounts.destroy', $acc->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus rekening ini?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="p-1.5 text-rose-600 hover:text-rose-800 rounded-lg hover:bg-rose-50 transition" title="Hapus Rekening">
-                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                            <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F5D1.svg" alt="Hapus" class="size-4 shrink-0" />
                         </button>
                     </form>
                 </div>
@@ -78,6 +83,15 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
                                 <input type="text" name="name" value="{{ $acc->name }}" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-900 mb-1">Jenis Rekening</label>
+                                <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                                    <option value="bank" {{ $acc->type === 'bank' ? 'selected' : '' }}>Bank 🏦</option>
+                                    <option value="ewallet" {{ $acc->type === 'ewallet' ? 'selected' : '' }}>E-Wallet 📱</option>
+                                    <option value="cash" {{ $acc->type === 'cash' ? 'selected' : '' }}>Tunai / Cash 💵</option>
+                                </select>
                             </div>
 
                             <div>
@@ -119,6 +133,15 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Nama Rekening / Dompet</label>
                             <input type="text" name="name" required placeholder="Misal: Bank Mandiri / OVO" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-900 mb-1">Jenis Rekening</label>
+                            <select name="type" required class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A]">
+                                <option value="bank">Bank 🏦</option>
+                                <option value="ewallet">E-Wallet 📱</option>
+                                <option value="cash">Tunai / Cash 💵</option>
+                            </select>
                         </div>
 
                         <div>
