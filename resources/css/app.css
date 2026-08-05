@@ -63,20 +63,20 @@ textarea:focus {
    GLASSMORPHISM MODAL DESIGN SYSTEM
    ========================================================================== */
 
-/* Outer Overlay Backdrop: Translucent dark tint WITHOUT pre-blurring page elements */
+/* Outer Overlay Backdrop: Dynamically blurred by JS & CSS */
 .hs-overlay-backdrop,
 div[data-hs-overlay-backdrop-template],
-.hs-overlay:not(#application-sidebar) {
-    background-color: rgba(15, 23, 42, 0.30) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+div[class*="bg-gray-900"][class*="fixed"] {
+    background-color: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
-/* Modal Dialog Box: Ultra-Dense Frosted Glass Box (64px Blur) */
+/* Modal Dialog Box: Ultra-Rich Frosted Glass Box */
 .modal-glass {
-    background: rgba(255, 255, 255, 0.48) !important;
-    backdrop-filter: blur(64px) saturate(250%) !important;
-    -webkit-backdrop-filter: blur(64px) saturate(250%) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    backdrop-filter: blur(32px) saturate(220%) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(220%) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
     box-shadow: inset 0 1.5px 3px 0 rgba(255, 255, 255, 0.95),
                 0 35px 70px -15px rgba(15, 23, 42, 0.4),
@@ -85,16 +85,16 @@ div[data-hs-overlay-backdrop-template],
 
 /* Header & Footer Translucent Glass Panels */
 .modal-glass-header {
-    background: rgba(255, 255, 255, 0.35) !important;
-    backdrop-filter: blur(40px) !important;
-    -webkit-backdrop-filter: blur(40px) !important;
+    background: rgba(255, 255, 255, 0.40) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
 .modal-glass-footer {
-    background: rgba(255, 255, 255, 0.35) !important;
-    backdrop-filter: blur(40px) !important;
-    -webkit-backdrop-filter: blur(40px) !important;
+    background: rgba(255, 255, 255, 0.40) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
