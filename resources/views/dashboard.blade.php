@@ -5,6 +5,55 @@
 @section('content')
 <div class="space-y-6">
 
+    <!-- HISTORICAL PERIOD SELECTOR BAR -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white p-4 sm:p-5 rounded-xl shadow-md border-none">
+        <div class="flex items-center gap-x-3">
+            <span class="inline-flex items-center justify-center size-11 rounded-xl bg-emerald-50 border border-emerald-100 shrink-0">
+                <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4C5.svg" alt="Periode" class="size-7 shrink-0" />
+            </span>
+            <div>
+                <div class="flex items-center gap-x-2">
+                    <h1 class="text-lg sm:text-xl font-extrabold text-gray-900">Ringkasan Keuangan Dashboard</h1>
+                    @if($selectedMonth !== $currentMonthReal)
+                        <span class="inline-flex items-center gap-x-1 py-0.5 px-2.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                            <span>📜 Masa Lampau:</span>
+                            <span>{{ $selectedMonthLabel }}</span>
+                        </span>
+                    @else
+                        <span class="inline-flex items-center gap-x-1 py-0.5 px-2.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <span>⚡ Periode Aktif:</span>
+                            <span>{{ $selectedMonthLabel }}</span>
+                        </span>
+                    @endif
+                </div>
+                <p class="text-xs text-gray-500 mt-0.5">Pilih periode bulan dan tahun untuk melihat catatan historis transaksi masa lampau</p>
+            </div>
+        </div>
+
+        <form action="{{ route('dashboard') }}" method="GET" class="flex flex-wrap items-center gap-2">
+            <div class="flex items-center gap-x-2">
+                <label for="period_select" class="text-xs font-semibold text-gray-600 whitespace-nowrap">Filter Periode:</label>
+                <select id="period_select" name="period" onchange="this.form.submit()" class="py-2 px-3 bg-gray-50 border border-gray-300 rounded-xl text-xs font-bold text-gray-900 focus:bg-white focus:border-[#66BB6A] focus:ring-[#66BB6A] shadow-xs cursor-pointer">
+                    @foreach($availableMonths as $mKey)
+                        @php
+                            $mLabel = \Carbon\Carbon::createFromFormat('Y-m', $mKey)->isoFormat('MMMM Y');
+                        @endphp
+                        <option value="{{ $mKey }}" {{ $selectedMonth === $mKey ? 'selected' : '' }}>
+                            {{ $mLabel }} {{ $mKey === $currentMonthReal ? '(Bulan Ini)' : '' }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            @if($selectedMonth !== $currentMonthReal)
+            <a href="{{ route('dashboard') }}" class="py-2 px-3 inline-flex items-center gap-x-1 text-xs font-bold rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition shadow-xs">
+                <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F504.svg" alt="Reset" class="size-3.5 shrink-0" />
+                Kembali ke Bulan Ini
+            </a>
+            @endif
+        </form>
+    </div>
+
     <!-- Top Summary Cards (Custom Redesign: Card 1 White, Card 2 Emerald, Card 3 Red Rose, Card 4 White) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- 1. Total Saldo (Semua Rekening) -->
@@ -21,10 +70,10 @@
             <p class="text-xs text-gray-500 mt-1">Gabungan sisa dana dari {{ count($accounts) }} dompet/rekening</p>
         </div>
 
-        <!-- 2. Pemasukan Bulan Ini (Hijau Emerald, Teks Putih) -->
+        <!-- 2. Pemasukan Periode Selected (Hijau Emerald, Teks Putih) -->
         <div class="bg-[#10B981] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pemasukan Bulan Ini</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pemasukan ({{ $selectedMonthLabel }})</span>
                 <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
                     <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B5.svg" alt="Pemasukan" class="size-6 shrink-0" />
                 </span>
@@ -32,13 +81,20 @@
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-white">+Rp {{ number_format($monthlyIncome, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-white/90 mt-1">Total pemasukan bulan {{ date('F Y') }}</p>
+            <div class="flex items-center justify-between mt-1 text-xs text-white/90">
+                <span>Pemasukan {{ $selectedMonthLabel }}</span>
+                @if($incomeChange !== null)
+                    <span class="font-bold bg-white/20 px-1.5 py-0.5 rounded text-[11px]">
+                        {{ $incomeChange >= 0 ? '▲ +' : '▼ ' }}{{ $incomeChange }}% vs {{ $prevMonthLabel }}
+                    </span>
+                @endif
+            </div>
         </div>
 
-        <!-- 3. Pengeluaran Bulan Ini (Red Rose, Teks Putih) -->
+        <!-- 3. Pengeluaran Periode Selected (Red Rose, Teks Putih) -->
         <div class="bg-[#F43F5E] rounded-xl p-4 shadow-md border-none text-white">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pengeluaran Bulan Ini</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Pengeluaran ({{ $selectedMonthLabel }})</span>
                 <span class="inline-flex justify-center items-center size-9 rounded-xl bg-white/20">
                     <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F4B8.svg" alt="Pengeluaran" class="size-6 shrink-0" />
                 </span>
@@ -46,13 +102,20 @@
             <div class="mt-2 flex items-baseline gap-x-2">
                 <h3 class="text-2xl font-extrabold text-white">-Rp {{ number_format($monthlyExpense, 0, ',', '.') }}</h3>
             </div>
-            <p class="text-xs text-white/90 mt-1">Total belanja & pengeluaran</p>
+            <div class="flex items-center justify-between mt-1 text-xs text-white/90">
+                <span>Pengeluaran {{ $selectedMonthLabel }}</span>
+                @if($expenseChange !== null)
+                    <span class="font-bold bg-white/20 px-1.5 py-0.5 rounded text-[11px]">
+                        {{ $expenseChange >= 0 ? '▲ +' : '▼ ' }}{{ $expenseChange }}% vs {{ $prevMonthLabel }}
+                    </span>
+                @endif
+            </div>
         </div>
 
-        <!-- 4. Arus Kas Bersih (NET) (Background Putih, Teks Dinamis) -->
+        <!-- 4. Arus Kas Bersih (NET) Periode Selected (Background Putih, Teks Dinamis) -->
         <div class="bg-white rounded-xl p-4 shadow-md border-none">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih (Net)</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Arus Kas Bersih ({{ $selectedMonthLabel }})</span>
                 <span class="inline-flex justify-center items-center size-9 rounded-xl {{ $netFlow > 0 ? 'bg-emerald-50 border border-emerald-100' : ($netFlow < 0 ? 'bg-rose-50 border border-rose-100' : 'bg-gray-100 border border-gray-200') }}">
                     <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/2696.svg" alt="Arus Kas Net" class="size-6 shrink-0" />
                 </span>
@@ -62,7 +125,7 @@
                     {{ $netFlow > 0 ? '+' : ($netFlow < 0 ? '-' : '') }}Rp {{ number_format(abs($netFlow), 0, ',', '.') }}
                 </h3>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Selisih pemasukan - pengeluaran</p>
+            <p class="text-xs text-gray-500 mt-1">Selisih pemasukan - pengeluaran {{ $selectedMonthLabel }}</p>
         </div>
     </div>
 
@@ -82,7 +145,10 @@
             @foreach($accounts as $acc)
             <div class="p-3.5 bg-white rounded-xl shadow-md border-none">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold text-gray-800">{{ $acc->name }}</span>
+                    <div class="flex items-center gap-x-2">
+                        <img src="{{ $acc->openmoji_icon_url }}" alt="{{ $acc->type_label }}" class="size-5 shrink-0" />
+                        <span class="text-xs font-semibold text-gray-800">{{ $acc->name }}</span>
+                    </div>
                     <span class="text-[11px] text-gray-400 font-medium">{{ $acc->account_number ?? 'Utama' }}</span>
                 </div>
                 <div class="mt-2 text-lg font-bold text-gray-900">
@@ -99,8 +165,8 @@
         <div class="lg:col-span-2 bg-white rounded-xl p-5 shadow-md border-none">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h2 class="text-base font-bold text-gray-900">Tren Keuangan Bulanan</h2>
-                    <p class="text-xs text-gray-500">Perbandingan pemasukan vs pengeluaran tahun {{ date('Y') }}</p>
+                    <h2 class="text-base font-bold text-gray-900">Tren Keuangan 6 Bulan</h2>
+                    <p class="text-xs text-gray-500">Perbandingan 6 bulan tren historis hingga {{ $selectedMonthLabel }}</p>
                 </div>
             </div>
             <div id="monthly-trend-chart" class="min-h-[300px]"></div>
@@ -111,7 +177,7 @@
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Proporsi Pengeluaran</h2>
-                    <p class="text-xs text-gray-500">Berdasarkan kategori bulan ini</p>
+                    <p class="text-xs text-gray-500">Berdasarkan kategori periode {{ $selectedMonthLabel }}</p>
                 </div>
             </div>
             <div id="expense-breakdown-chart" class="min-h-[300px] flex items-center justify-center"></div>
@@ -126,9 +192,9 @@
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h2 class="text-base font-bold text-gray-900">Status Batas Anggaran (Budget)</h2>
-                    <p class="text-xs text-gray-500">Penggunaan kuota anggaran bulan {{ date('F Y') }}</p>
+                    <p class="text-xs text-gray-500">Penggunaan kuota anggaran periode {{ $selectedMonthLabel }}</p>
                 </div>
-                <a href="{{ route('budgets.index') }}" class="text-xs font-bold text-gray-900 hover:text-gray-700 transition">
+                <a href="{{ route('budgets.index', ['month' => $selectedMonth]) }}" class="text-xs font-bold text-gray-900 hover:text-gray-700 transition">
                     Atur Budget →
                 </a>
             </div>
@@ -157,22 +223,22 @@
                 </div>
                 @empty
                 <div class="text-center py-6 text-xs text-gray-500">
-                    Belum ada batas anggaran diset untuk bulan ini.
+                    Belum ada batas anggaran diset untuk periode {{ $selectedMonthLabel }}.
                     <br>
-                    <a href="{{ route('budgets.index') }}" class="text-gray-900 font-bold underline mt-1 inline-block">Set Budget Sekarang</a>
+                    <a href="{{ route('budgets.index', ['month' => $selectedMonth]) }}" class="text-gray-900 font-bold underline mt-1 inline-block">Set Budget Periode Ini</a>
                 </div>
                 @endforelse
             </div>
         </div>
 
-        <!-- Recent 5 Transactions -->
+        <!-- Recent / Historical Transactions for Selected Month -->
         <div class="bg-white rounded-xl p-5 shadow-md border-none">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h2 class="text-base font-bold text-gray-900">Transaksi Terakhir</h2>
-                    <p class="text-xs text-gray-500">5 catatan transaksi terbaru</p>
+                    <h2 class="text-base font-bold text-gray-900">Ringkasan Transaksi Periode Ini</h2>
+                    <p class="text-xs text-gray-500">Daftar transaksi tercatat periode {{ $selectedMonthLabel }}</p>
                 </div>
-                <a href="{{ route('transactions.index') }}" class="text-xs font-bold text-gray-900 hover:text-gray-700 transition">
+                <a href="{{ route('transactions.index', ['month' => $selectedMonth]) }}" class="text-xs font-bold text-gray-900 hover:text-gray-700 transition">
                     Lihat Semua →
                 </a>
             </div>
@@ -206,7 +272,7 @@
                 </div>
                 @empty
                 <div class="text-center py-6 text-xs text-gray-500">
-                    Belum ada transaksi recorded.
+                    Belum ada transaksi recorded pada periode {{ $selectedMonthLabel }}.
                 </div>
                 @endforelse
             </div>
