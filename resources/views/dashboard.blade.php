@@ -181,18 +181,8 @@
                 @forelse($recentTransactions as $tx)
                 <div class="py-3 flex items-center justify-between">
                     <div class="flex items-center gap-x-3">
-                        <div class="size-9 rounded-xl flex items-center justify-center {{ $tx->category->type === 'income' ? 'bg-gray-50 text-emerald-600 border border-gray-200' : 'bg-gray-50 text-[#F43F5E] border border-gray-200' }}">
-                            @if($tx->category->type === 'income')
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-  <path fill-rule="evenodd" d="M20.24 3.75a.75.75 0 0 1-.75.75H8.989v13.939l2.47-2.47a.75.75 0 1 1 1.06 1.061l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.751-3.75a.75.75 0 1 1 1.06-1.06l2.47 2.469V3.75a.75.75 0 0 1 .75-.75H19.49a.75.75 0 0 1 .75.75Z" clip-rule="evenodd" />
-</svg>
-
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-  <path fill-rule="evenodd" d="M20.24 20.249a.75.75 0 0 0-.75-.75H8.989V5.56l2.47 2.47a.75.75 0 0 0 1.06-1.061l-3.75-3.75a.75.75 0 0 0-1.06 0l-3.75 3.75a.75.75 0 1 0 1.06 1.06l2.47-2.469V20.25c0 .414.335.75.75.75h11.25a.75.75 0 0 0 .75-.75Z" clip-rule="evenodd" />
-</svg>
-
-                            @endif
+                        <div class="size-9 rounded-full flex items-center justify-center bg-gray-50 border border-gray-200 shrink-0">
+                            <span class="size-3 rounded-full {{ $tx->category->type === 'income' ? 'bg-[#10B981]' : 'bg-[#F43F5E]' }}"></span>
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-900">{{ $tx->description ?? $tx->category->name }}</p>

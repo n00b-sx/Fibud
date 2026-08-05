@@ -181,12 +181,8 @@
             <div class="p-4 hover:bg-gray-50/60 transition">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div class="flex items-start gap-x-3">
-                        <div class="size-9 rounded-xl flex items-center justify-center shrink-0 {{ $tx->category->type === 'income' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-gray-50 text-gray-600 border border-gray-200' }}">
-                            @if($tx->category->type === 'income')
-                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/></svg>
-                            @else
-                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h10"/></svg>
-                            @endif
+                        <div class="size-9 rounded-full flex items-center justify-center bg-gray-50 border border-gray-200 shrink-0">
+                            <span class="size-3 rounded-full {{ $tx->category->type === 'income' ? 'bg-[#10B981]' : 'bg-[#F43F5E]' }}"></span>
                         </div>
                         <div>
                             <div class="flex items-center gap-x-2">
