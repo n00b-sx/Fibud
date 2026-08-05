@@ -67,35 +67,35 @@ textarea:focus {
 .hs-overlay-backdrop,
 div[data-hs-overlay-backdrop-template],
 .hs-overlay:not(#application-sidebar) {
-    background-color: rgba(15, 23, 42, 0.35) !important;
+    background-color: rgba(15, 23, 42, 0.30) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-/* Modal Dialog Box: True Frosted Glass Box */
+/* Modal Dialog Box: Ultra-Dense Frosted Glass Box (64px Blur) */
 .modal-glass {
-    background: rgba(255, 255, 255, 0.62) !important;
-    backdrop-filter: blur(28px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
-    box-shadow: inset 0 1px 2px 0 rgba(255, 255, 255, 0.9),
-                0 30px 60px -12px rgba(15, 23, 42, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.48) !important;
+    backdrop-filter: blur(64px) saturate(250%) !important;
+    -webkit-backdrop-filter: blur(64px) saturate(250%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+    box-shadow: inset 0 1.5px 3px 0 rgba(255, 255, 255, 0.95),
+                0 35px 70px -15px rgba(15, 23, 42, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.6) !important;
 }
 
 /* Header & Footer Translucent Glass Panels */
 .modal-glass-header {
-    background: rgba(255, 255, 255, 0.40) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
 .modal-glass-footer {
-    background: rgba(255, 255, 255, 0.40) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
 /* Frosted Glass Inputs inside Modals */
@@ -107,11 +107,11 @@ div[data-hs-overlay-backdrop-template],
 .modal-glass input[type="password"],
 .modal-glass select,
 .modal-glass textarea {
-    background-color: rgba(255, 255, 255, 0.55) !important;
-    border: 1px solid rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04) !important;
 }
 
 .modal-glass input[type="text"]:focus,
