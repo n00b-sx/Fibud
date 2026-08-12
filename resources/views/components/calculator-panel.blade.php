@@ -2,7 +2,7 @@
 <div class="transaction-calculator-panel hidden mb-4 p-4 bg-slate-900/95 backdrop-blur-md rounded-2xl text-white shadow-2xl border border-white/20">
     <div class="flex items-center justify-between mb-2">
         <div class="flex items-center gap-x-2">
-            <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F5A9.svg" alt="Calculator" class="size-5 shrink-0" />
+            {!! \App\Helpers\OpenMojiHelper::render('🧮', 'size-5 shrink-0') !!}
             <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">Kalkulator Hitung Transaksi</span>
         </div>
         <button type="button" class="btn-close-calculator text-slate-400 hover:text-white text-xs font-bold transition">

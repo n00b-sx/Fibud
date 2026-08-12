@@ -316,7 +316,7 @@
                         Ubah Transaksi
                     </h3>
                     <button type="button" class="btn-toggle-calculator py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-bold rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition shadow-2xs">
-                        <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F5A9.svg" alt="Calculator" class="size-4 shrink-0" />
+                        {!! \App\Helpers\OpenMojiHelper::render('🧮', 'size-4 shrink-0') !!}
                         <span>Kalkulator</span>
                     </button>
                 </div>
