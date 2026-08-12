@@ -15,6 +15,7 @@ class Transaction extends Model
         'category_id',
         'account_id',
         'amount',
+        'discount',
         'date',
         'description',
         'source_destination',
@@ -22,6 +23,7 @@ class Transaction extends Model
 
     protected $casts = [
         'amount' => 'decimal:2',
+        'discount' => 'decimal:2',
         'date' => 'date',
     ];
 

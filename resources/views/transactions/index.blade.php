@@ -261,7 +261,7 @@
                             <th class="py-2.5 px-3 text-start">Barang</th>
                             <th class="py-2.5 px-3 text-center whitespace-nowrap">Qty</th>
                             <th class="py-2.5 px-3 text-end whitespace-nowrap">Harga Satuan</th>
-                            <th class="py-2.5 px-3 text-end whitespace-nowrap">Diskon</th>
+                            <th class="py-2.5 px-3 text-end whitespace-nowrap">Diskon Item</th>
                             <th class="py-2.5 px-3 text-end whitespace-nowrap">Subtotal</th>
                         </tr>
                     </thead>
@@ -276,10 +276,23 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr class="border-t border-gray-300 font-bold">
-                            <td colspan="4" class="py-2.5 text-end text-gray-900">Total Struk:</td>
-                            <td class="py-2.5 text-end text-gray-900 text-sm font-extrabold">Rp {{ number_format($tx->amount, 0, ',', '.') }}</td>
+                    <tfoot class="bg-gray-50/50">
+                        @php
+                            $itemsSubtotalSum = $tx->items->sum('subtotal');
+                        @endphp
+                        <tr class="border-t border-gray-200 text-xs">
+                            <td colspan="4" class="py-2 px-3 text-end text-gray-600 font-semibold">Total Subtotal Barang:</td>
+                            <td class="py-2 px-3 text-end text-gray-900 font-bold whitespace-nowrap">Rp {{ number_format($itemsSubtotalSum, 0, ',', '.') }}</td>
+                        </tr>
+                        @if($tx->discount > 0)
+                        <tr class="text-xs">
+                            <td colspan="4" class="py-2 px-3 text-end text-rose-600 font-semibold">Diskon Akhir Struk / Voucher:</td>
+                            <td class="py-2 px-3 text-end text-rose-600 font-bold whitespace-nowrap">-Rp {{ number_format($tx->discount, 0, ',', '.') }}</td>
+                        </tr>
+                        @endif
+                        <tr class="border-t border-gray-300 font-bold text-sm">
+                            <td colspan="4" class="py-2.5 px-3 text-end text-gray-900">Total Akhir Bayar:</td>
+                            <td class="py-2.5 px-3 text-end text-emerald-600 font-extrabold whitespace-nowrap">Rp {{ number_format($tx->amount, 0, ',', '.') }}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -298,9 +311,15 @@
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-2xl sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
         <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
             <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
-                <h3 class="font-bold text-gray-900">
-                    Ubah Transaksi
-                </h3>
+                <div class="flex items-center gap-x-2">
+                    <h3 class="font-bold text-gray-900">
+                        Ubah Transaksi
+                    </h3>
+                    <button type="button" class="btn-toggle-calculator py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-bold rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition shadow-2xs">
+                        <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F5A9.svg" alt="Calculator" class="size-4 shrink-0" />
+                        <span>Kalkulator</span>
+                    </button>
+                </div>
                 <button type="button" class="size-8 inline-flex justify-center items-center rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-edit-transaction-modal-{{ $tx->id }}">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
@@ -310,6 +329,10 @@
                 @csrf
                 @method('PUT')
                 <div class="p-4 space-y-4">
+
+                    <!-- TRANSACTION CALCULATOR PANEL -->
+                    @include('components.calculator-panel')
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-900 mb-1">Rekening / Sumber Dana</label>
@@ -361,9 +384,22 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                            <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                            <label class="block text-sm font-medium text-gray-900 mb-1">
+                                <span class="flex items-center justify-between">
+                                    <span>Diskon Akhir Struk / Voucher (Rp)</span>
+                                    <span class="text-[11px] text-rose-600 font-bold">(Di Luar Diskon Per Barang)</span>
+                                </span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-rose-500 text-sm font-semibold">-Rp</span>
+                                <input type="text" name="discount" value="{{ number_format($tx->discount, 0, '', '') }}" data-currency-input placeholder="0" class="edit-discount-input py-2 ps-11 pe-3 block w-full bg-rose-50/40 border border-rose-200 rounded-lg text-sm font-bold text-rose-700 focus:bg-white focus:border-rose-500 focus:ring-rose-500">
+                            </div>
                         </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
+                        <input type="text" name="description" value="{{ $tx->description }}" placeholder="Keterangan transaksi" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                     </div>
 
                     <!-- SECTION: EDIT RINCIAN ITEM STRUK BELANJA -->
@@ -371,7 +407,7 @@
                         <div class="flex items-center justify-between mb-3">
                             <div>
                                 <h4 class="text-xs font-semibold text-gray-900 uppercase tracking-wider">Rincian Struk Barang</h4>
-                                <p class="text-[11px] text-gray-500">Edit item barang, harga satuan, dan diskon.</p>
+                                <p class="text-[11px] text-gray-500">Edit item barang, harga satuan, dan diskon per barang.</p>
                             </div>
                             <button type="button" class="btn-edit-add-item py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100 transition">
                                 + Tambah Barang
@@ -428,9 +464,16 @@
             const container = form.querySelector('.edit-items-container');
             const btnAdd = form.querySelector('.btn-edit-add-item');
             const inputTotalAmount = form.querySelector('.edit-amount-input');
+            const inputGlobalDiscount = form.querySelector('.edit-discount-input');
             const catSelect = form.querySelector('.edit-category-select');
             const labelSourceDest = form.querySelector('.edit-source-dest-label');
             let itemIndex = container.querySelectorAll('.receipt-item-row').length;
+
+            // Initialize calculator for edit modal
+            const modalContainer = form.closest('.hs-overlay') || form;
+            if (typeof initTransactionCalculator === 'function') {
+                initTransactionCalculator(modalContainer);
+            }
 
             if (catSelect && labelSourceDest) {
                 catSelect.addEventListener('change', function () {
@@ -445,7 +488,7 @@
             }
 
             function calculateTotals() {
-                let grandTotal = 0;
+                let itemsSubtotalSum = 0;
                 const rows = container.querySelectorAll('.receipt-item-row');
                 
                 rows.forEach(row => {
@@ -461,12 +504,19 @@
                     const subtotal = Math.max(0, (qty * price) - discount);
                     subtotalEl.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(subtotal);
 
-                    grandTotal += subtotal;
+                    itemsSubtotalSum += subtotal;
                 });
 
+                const globalDiscount = parseFloat(unformatRupiahString(inputGlobalDiscount ? inputGlobalDiscount.value : '0')) || 0;
+
                 if (rows.length > 0) {
-                    inputTotalAmount.value = formatRupiahString(grandTotal);
+                    const netTotal = Math.max(0, itemsSubtotalSum - globalDiscount);
+                    inputTotalAmount.value = formatRupiahString(netTotal);
                 }
+            }
+
+            if (inputGlobalDiscount) {
+                inputGlobalDiscount.addEventListener('input', calculateTotals);
             }
 
             container.querySelectorAll('.receipt-item-row').forEach(row => {
@@ -521,5 +571,6 @@
                 });
             }
         });
-    </script>
+    });
+</script>
 @endsection

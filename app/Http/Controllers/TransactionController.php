@@ -100,6 +100,7 @@ class TransactionController extends Controller
             'category_id' => 'required|exists:categories,id',
             'account_id' => 'required|exists:accounts,id',
             'amount' => 'nullable|numeric|min:0',
+            'discount' => 'nullable|numeric|min:0',
             'date' => 'required|date',
             'description' => 'nullable|string|max:255',
             'source_destination' => 'nullable|string|max:255',
@@ -134,11 +135,13 @@ class TransactionController extends Controller
                 }
             }
 
-            $finalAmount = count($itemsData) > 0 ? $computedTotal : (float) ($validated['amount'] ?? 0);
+            $globalDiscount = (float) ($validated['discount'] ?? 0);
+            $baseAmount = count($itemsData) > 0 ? $computedTotal : (float) ($validated['amount'] ?? 0);
+            $finalAmount = max(0, $baseAmount - $globalDiscount);
 
-            if ($finalAmount <= 0) {
+            if ($finalAmount <= 0 && $baseAmount <= 0) {
                 throw \Illuminate\Validation\ValidationException::withMessages([
-                    'amount' => 'Nominal transaksi harus lebih besar dari 0.',
+                    'amount' => 'Nominal total transaksi harus lebih besar dari 0.',
                 ]);
             }
 
@@ -146,6 +149,7 @@ class TransactionController extends Controller
                 'category_id' => $validated['category_id'],
                 'account_id' => $validated['account_id'],
                 'amount' => $finalAmount,
+                'discount' => $globalDiscount,
                 'date' => $validated['date'],
                 'description' => $validated['description'],
                 'source_destination' => $validated['source_destination'] ?? null,
@@ -165,6 +169,7 @@ class TransactionController extends Controller
             'category_id' => 'required|exists:categories,id',
             'account_id' => 'required|exists:accounts,id',
             'amount' => 'nullable|numeric|min:0',
+            'discount' => 'nullable|numeric|min:0',
             'date' => 'required|date',
             'description' => 'nullable|string|max:255',
             'source_destination' => 'nullable|string|max:255',
@@ -199,11 +204,13 @@ class TransactionController extends Controller
                 }
             }
 
-            $finalAmount = count($itemsData) > 0 ? $computedTotal : (float) ($validated['amount'] ?? 0);
+            $globalDiscount = (float) ($validated['discount'] ?? 0);
+            $baseAmount = count($itemsData) > 0 ? $computedTotal : (float) ($validated['amount'] ?? 0);
+            $finalAmount = max(0, $baseAmount - $globalDiscount);
 
-            if ($finalAmount <= 0) {
+            if ($finalAmount <= 0 && $baseAmount <= 0) {
                 throw \Illuminate\Validation\ValidationException::withMessages([
-                    'amount' => 'Nominal transaksi harus lebih besar dari 0.',
+                    'amount' => 'Nominal total transaksi harus lebih besar dari 0.',
                 ]);
             }
 
@@ -211,6 +218,7 @@ class TransactionController extends Controller
                 'category_id' => $validated['category_id'],
                 'account_id' => $validated['account_id'],
                 'amount' => $finalAmount,
+                'discount' => $globalDiscount,
                 'date' => $validated['date'],
                 'description' => $validated['description'],
                 'source_destination' => $validated['source_destination'] ?? null,

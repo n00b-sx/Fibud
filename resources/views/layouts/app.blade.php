@@ -145,9 +145,15 @@
         <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-2xl sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
             <div class="w-full flex flex-col modal-glass rounded-2xl pointer-events-auto overflow-hidden">
                 <div class="flex justify-between items-center py-3.5 px-4 modal-glass-header">
-                    <h3 class="font-bold text-gray-900">
-                        Catat Transaksi / Struk Belanja Baru
-                    </h3>
+                    <div class="flex items-center gap-x-2">
+                        <h3 class="font-bold text-gray-900">
+                            Catat Transaksi / Struk Belanja Baru
+                        </h3>
+                        <button type="button" class="btn-toggle-calculator py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-bold rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition shadow-2xs">
+                            <img src="https://cdn.jsdelivr.net/npm/openmoji@15.1.0/color/svg/1F5A9.svg" alt="Calculator" class="size-4 shrink-0" />
+                            <span>Kalkulator</span>
+                        </button>
+                    </div>
                     <button type="button" class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-white/40 bg-white/60 text-gray-800 hover:bg-white/90 focus:outline-none transition shadow-2xs" data-hs-overlay="#hs-add-transaction-modal">
                         <span class="sr-only">Tutup</span>
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -157,6 +163,10 @@
                 <form action="{{ route('transactions.store') }}" method="POST" id="transaction-form">
                     @csrf
                     <div class="p-4 space-y-4">
+
+                        <!-- TRANSACTION CALCULATOR PANEL -->
+                        @include('components.calculator-panel')
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="modal-account" class="block text-sm font-medium text-gray-900 mb-1">Rekening / Sumber Dana</label>
@@ -204,7 +214,7 @@
                                     <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500 text-sm font-semibold">Rp</span>
                                     <input type="text" id="modal-amount" name="amount" data-currency-input placeholder="0" class="py-2 ps-9 pe-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm font-bold focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                                 </div>
-                                <span class="text-[11px] text-gray-500">Format ribuan otomatis (cth: 10000 -> 10.000). Otomatis dihitung jika mengisi Struk.</span>
+                                <span class="text-[11px] text-gray-500">Otomatis dihitung (Item - Diskon Struk) jika mengisi Struk.</span>
                             </div>
                         </div>
 
@@ -215,9 +225,23 @@
                             </div>
 
                             <div>
-                                <label for="modal-description" class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
-                                <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
+                                <label for="modal-discount" class="block text-sm font-medium text-gray-900 mb-1">
+                                    <span class="flex items-center justify-between">
+                                        <span>Diskon Akhir Struk / Voucher (Rp)</span>
+                                        <span class="text-[11px] text-rose-600 font-bold">(Di Luar Diskon Per Barang)</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-rose-500 text-sm font-semibold">-Rp</span>
+                                    <input type="text" id="modal-discount" name="discount" data-currency-input placeholder="0" class="py-2 ps-11 pe-3 block w-full bg-rose-50/40 border border-rose-200 rounded-lg text-sm font-bold text-rose-700 focus:bg-white focus:border-rose-500 focus:ring-rose-500">
+                                </div>
+                                <span class="text-[11px] text-gray-500">Potongan harga di akhir struk (cth: voucher / promo toko).</span>
                             </div>
+                        </div>
+
+                        <div>
+                            <label for="modal-description" class="block text-sm font-medium text-gray-900 mb-1">Keterangan / Catatan Toko</label>
+                            <input type="text" id="modal-description" name="description" placeholder="Contoh: Belanja Bulanan di Indomaret" class="py-2 px-3 block w-full bg-gray-50 border border-gray-300 rounded-lg text-sm focus:bg-white focus:border-orange-500 focus:ring-orange-500">
                         </div>
 
                         <!-- SECTION: RINCIAN ITEM STRUK BELANJA -->
@@ -225,7 +249,7 @@
                             <div class="flex items-center justify-between mb-3">
                                 <div>
                                     <h4 class="text-xs font-semibold text-gray-900 uppercase tracking-wider">Rincian Struk Barang (Opsional)</h4>
-                                    <p class="text-[11px] text-gray-500">Isi jika ingin mencatat rincian per barang, harga satuan, dan diskon.</p>
+                                    <p class="text-[11px] text-gray-500">Isi jika ingin mencatat rincian per barang, harga satuan, dan diskon per barang.</p>
                                 </div>
                                 <button type="button" id="btn-add-item" class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition">
                                     + Tambah Barang
@@ -252,7 +276,7 @@
         </div>
     </div>
 
-    <!-- GLOBAL JS FOR RUPIAH CURRENCY FORMATTING & LIVE CALCULATION -->
+    <!-- GLOBAL JS FOR RUPIAH CURRENCY FORMATTING, CALCULATOR & LIVE CALCULATION -->
     <script>
         function formatRupiahString(val) {
             if (val === null || val === undefined || val === '') return '';
@@ -266,7 +290,101 @@
             return val.toString().replace(/\D/g, '');
         }
 
+        // Global Transaction Mini-Calculator Engine
+        function initTransactionCalculator(modalContainer) {
+            const calcPanel = modalContainer.querySelector('.transaction-calculator-panel');
+            const toggleBtn = modalContainer.querySelector('.btn-toggle-calculator');
+            if (!calcPanel || !toggleBtn) return;
+
+            const closeBtn = calcPanel.querySelector('.btn-close-calculator');
+            const exprEl = calcPanel.querySelector('.calc-expression');
+            const resEl = calcPanel.querySelector('.calc-result');
+            const targetSelect = calcPanel.querySelector('.calc-target-select');
+            const applyBtn = calcPanel.querySelector('.btn-apply-calc-result');
+
+            let currentExpr = '';
+            let currentResult = 0;
+
+            function updateCalcDisplay() {
+                exprEl.textContent = currentExpr;
+                try {
+                    let sanitized = currentExpr.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                    if (sanitized.trim() === '') {
+                        currentResult = 0;
+                    } else if (/^[0-9+\-*/().\s]+$/.test(sanitized)) {
+                        let evaluated = new Function('return ' + sanitized)();
+                        if (!isNaN(evaluated) && isFinite(evaluated)) {
+                            currentResult = Math.round(evaluated * 100) / 100;
+                        }
+                    }
+                } catch (e) {
+                    // Invalid/partial expression
+                }
+                resEl.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(currentResult);
+            }
+
+            toggleBtn.addEventListener('click', function () {
+                calcPanel.classList.toggle('hidden');
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    calcPanel.classList.add('hidden');
+                });
+            }
+
+            calcPanel.querySelectorAll('.calc-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const num = btn.getAttribute('data-num');
+                    const op = btn.getAttribute('data-op');
+                    const action = btn.getAttribute('data-action');
+
+                    if (num !== null) {
+                        currentExpr += num;
+                    } else if (op !== null) {
+                        currentExpr += ' ' + op + ' ';
+                    } else if (action === 'clear') {
+                        currentExpr = '';
+                        currentResult = 0;
+                    } else if (action === 'equals') {
+                        if (currentResult) {
+                            currentExpr = currentResult.toString();
+                        }
+                    }
+                    updateCalcDisplay();
+                });
+            });
+
+            applyBtn.addEventListener('click', function () {
+                const targetType = targetSelect.value;
+                let targetInput = null;
+
+                if (targetType === 'amount') {
+                    targetInput = modalContainer.querySelector('input[name="amount"]');
+                } else if (targetType === 'discount') {
+                    targetInput = modalContainer.querySelector('input[name="discount"]');
+                } else if (targetType === 'item_price') {
+                    const priceInputs = modalContainer.querySelectorAll('.item-price');
+                    if (priceInputs.length > 0) {
+                        targetInput = priceInputs[priceInputs.length - 1];
+                    }
+                }
+
+                if (targetInput) {
+                    targetInput.value = formatRupiahString(Math.abs(currentResult));
+                    targetInput.dispatchEvent(new Event('input', { bubbles: true }));
+                    calcPanel.classList.add('hidden');
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
+            // Initialize calculator for add transaction modal
+            const addModal = document.getElementById('hs-add-transaction-modal');
+            if (addModal) {
+                initTransactionCalculator(addModal);
+            }
+
             // Live formatting on typing for all [data-currency-input]
             document.addEventListener('input', function (e) {
                 if (e.target && e.target.matches('[data-currency-input]')) {
@@ -315,10 +433,11 @@
             const container = document.getElementById('receipt-items-container');
             const btnAdd = document.getElementById('btn-add-item');
             const inputTotalAmount = document.getElementById('modal-amount');
+            const inputGlobalDiscount = document.getElementById('modal-discount');
             let itemIndex = 0;
 
             function calculateTotals() {
-                let grandTotal = 0;
+                let itemsSubtotalSum = 0;
                 const rows = container.querySelectorAll('.receipt-item-row');
                 
                 rows.forEach(row => {
@@ -334,12 +453,19 @@
                     const subtotal = Math.max(0, (qty * price) - discount);
                     subtotalEl.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(subtotal);
 
-                    grandTotal += subtotal;
+                    itemsSubtotalSum += subtotal;
                 });
 
+                const globalDiscount = parseFloat(unformatRupiahString(inputGlobalDiscount ? inputGlobalDiscount.value : '0')) || 0;
+
                 if (rows.length > 0) {
-                    inputTotalAmount.value = formatRupiahString(grandTotal);
+                    const netTotal = Math.max(0, itemsSubtotalSum - globalDiscount);
+                    inputTotalAmount.value = formatRupiahString(netTotal);
                 }
+            }
+
+            if (inputGlobalDiscount) {
+                inputGlobalDiscount.addEventListener('input', calculateTotals);
             }
 
             function addReceiptRow(name = '', qty = 1, price = '', discount = '') {
